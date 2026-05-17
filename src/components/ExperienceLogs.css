@@ -1,3 +1,21 @@
+#experience-logs {
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 40%, rgba(22, 38, 46, 0.85) 0%, transparent 70%),
+    var(--color-bg);
+}
+
+#experience-logs::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .experience-logs__list {
   margin-top: 48px;
   display: flex;
