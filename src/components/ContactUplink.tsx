@@ -25,7 +25,7 @@ export default function ContactUplink() {
   const formRef = useRef<HTMLFormElement>(null)
   const [status, setStatus] = useState<SendStatus>('idle')
 
-  const isMounted = useRef(true)
+  const isMounted = useRef(false)
 
   useEffect(() => {
     isMounted.current = true

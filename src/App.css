@@ -15,9 +15,3 @@ section {
 section:last-child {
   border-bottom: none;
 }
-
-@media (max-width: 767px) {
-  main {
-    padding-top: 64px;
-  }
-}
