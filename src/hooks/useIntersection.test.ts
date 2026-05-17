@@ -39,9 +39,10 @@ describe('useIntersection', () => {
   })
 
   it('disconnects the observer after first intersection', () => {
-    const { result } = renderHook(() => useIntersection())
+    const { result, unmount } = renderHook(() => useIntersection())
     act(() => triggerIntersection(true))
-    expect(mockDisconnect).toHaveBeenCalledOnce()
+    unmount()
+    expect(mockDisconnect).toHaveBeenCalledTimes(2)
     void result.current
   })
 })
