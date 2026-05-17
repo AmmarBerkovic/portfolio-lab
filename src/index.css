@@ -6,6 +6,7 @@
   --color-border:         rgba(148, 163, 184, 0.2);
   --color-border-hover:   rgba(34, 211, 238, 0.6);
   --color-cyan:           #22d3ee;
+  --color-cyan-light:     #67e8f9;
   --color-amber:          #fbbf24;
   --color-violet:         #a78bfa;
   --color-green:          #4ade80;
@@ -56,14 +57,19 @@ body::before {
     rgba(0, 0, 0, 0.03) 4px
   );
   pointer-events: none;
-  z-index: 9999;
+  z-index: 1;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar — Firefox */
+html { scrollbar-width: thin; scrollbar-color: #94a3b8 var(--color-bg); }
+
+/* Custom scrollbar — WebKit */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--color-bg); }
 ::-webkit-scrollbar-thumb { background: #94a3b8; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-cyan); }
+
+html { scrollbar-width: thin; scrollbar-color: #94a3b8 var(--color-bg); }
 
 /* Shared chip styles */
 .chip {
@@ -163,7 +169,7 @@ body::before {
   display: inline-block;
 }
 .btn-primary:hover {
-  background: #67e8f9;
+  background: var(--color-cyan-light);
   box-shadow: 0 0 16px rgba(34, 211, 238, 0.4);
 }
 
