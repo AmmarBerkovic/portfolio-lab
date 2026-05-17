@@ -22,103 +22,6 @@
 .command-center__inner {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-
-.command-center__right {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* Profile image frame */
-.profile-frame {
-  position: relative;
-  border: 1px solid var(--color-border);
-}
-
-.profile-frame__img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  display: block;
-  background: var(--color-surface);
-  filter: grayscale(15%);
-}
-
-.profile-frame__coord {
-  position: absolute;
-  bottom: 8px;
-  right: 10px;
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.06em;
-  color: var(--color-text-muted);
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-/* AUTHENTICATED_ENTITY panel */
-.auth-panel {
-  border: 1px solid var(--color-border);
-}
-
-.auth-panel__body {
-  padding: 12px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.auth-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.07em;
-}
-
-.auth-row__key {
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-}
-
-.auth-row__val {
-  color: var(--color-text);
-  font-weight: 500;
-}
-
-.auth-row__val--cyan {
-  color: var(--color-cyan);
-}
-
-/* Scroll prompt */
-.scroll-prompt {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  opacity: 0.4;
-  z-index: 2;
-}
-
-.scroll-prompt__arrow {
-  width: 1px;
-  height: 24px;
-  background: linear-gradient(to bottom, var(--color-text-muted), transparent);
 }
 
 .command-center__name {
@@ -187,15 +90,6 @@
   flex-wrap: wrap;
   gap: 16px;
   margin-top: 40px;
-}
-
-@media (max-width: 1023px) {
-  .command-center__inner {
-    grid-template-columns: 1fr;
-  }
-  .command-center__right {
-    display: none;
-  }
 }
 
 @media (max-width: 767px) {
