@@ -22,6 +22,10 @@
 .command-center__inner {
   position: relative;
   z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
 }
 
 .command-center__name {
@@ -92,6 +96,84 @@
   margin-top: 40px;
 }
 
+.command-center__right {
+  display: flex;
+  justify-content: center;
+}
+
+.command-center__frame {
+  width: 100%;
+  max-width: 320px;
+}
+
+.command-center__frame-inner {
+  position: relative;
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  clip-path: polygon(18px 0, 100% 0, 100% 100%, 0 100%, 0 18px);
+  overflow: hidden;
+  background: rgba(34, 211, 238, 0.03);
+}
+
+.command-center__photo {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(15%) contrast(1.05);
+  opacity: 0.92;
+}
+
+.command-center__scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.08) 3px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+}
+
+.command-center__coord {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  color: rgba(34, 211, 238, 0.7);
+  background: rgba(11, 19, 38, 0.7);
+  padding: 2px 5px;
+  pointer-events: none;
+}
+
+.command-center__coord--tl { top: 8px;    left: 22px; }
+.command-center__coord--br { bottom: 8px; right: 8px;  }
+
+.command-center__frame-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  border-top: none;
+}
+
+.command-center__frame-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-cyan);
+}
+
+.command-center__frame-id {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  color: rgba(195, 199, 202, 0.6);
+}
+
 @media (max-width: 767px) {
   .command-center__actions {
     flex-direction: column;
@@ -100,4 +182,6 @@
   .command-center__actions .btn-ghost {
     text-align: center;
   }
+  .command-center__inner { grid-template-columns: 1fr; }
+  .command-center__right { display: none; }
 }
