@@ -61,7 +61,7 @@ export default function Nav() {
       <ul className={`nav__overlay${menuOpen ? ' open' : ''}`}>
         {navLinks.map(({ label, href }) => (
           <li key={label}>
-            <a href={href} className="nav__link" onClick={handleLinkClick}>
+            <a href={href} className={`nav__link${activeId === href.slice(1) ? ' active' : ''}`} onClick={handleLinkClick}>
               {label}
             </a>
           </li>
