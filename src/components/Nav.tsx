@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { navLinks } from '../data/content'
 import './Nav.css'
 
-const SECTION_IDS = ['command-center', 'core-stack', 'experience-logs', 'active-projects', 'contact-uplink']
+const SECTION_IDS = navLinks.map(({ href }) => href.slice(1))
 
 export default function Nav() {
   const [activeId, setActiveId] = useState('command-center')
@@ -40,6 +40,7 @@ export default function Nav() {
               <a
                 href={href}
                 className={`nav__link${activeId === href.slice(1) ? ' active' : ''}`}
+                aria-current={activeId === href.slice(1) ? 'page' : undefined}
               >
                 {label}
               </a>
@@ -50,6 +51,7 @@ export default function Nav() {
         <button
           className="nav__hamburger"
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
           onClick={() => setMenuOpen((v) => !v)}
         >
           <span />
@@ -61,7 +63,7 @@ export default function Nav() {
       <ul className={`nav__overlay${menuOpen ? ' open' : ''}`}>
         {navLinks.map(({ label, href }) => (
           <li key={label}>
-            <a href={href} className={`nav__link${activeId === href.slice(1) ? ' active' : ''}`} onClick={handleLinkClick}>
+            <a href={href} className={`nav__link${activeId === href.slice(1) ? ' active' : ''}`} aria-current={activeId === href.slice(1) ? 'page' : undefined} onClick={handleLinkClick}>
               {label}
             </a>
           </li>

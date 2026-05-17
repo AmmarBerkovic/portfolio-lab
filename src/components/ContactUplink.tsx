@@ -96,7 +96,15 @@ export default function ContactUplink() {
             </button>
           </form>
 
-          <aside className="contact-sidebar">
+          <span
+            role="status"
+            aria-live="polite"
+            style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap' }}
+          >
+            {status === 'success' ? 'Message sent successfully.' : status === 'error' ? 'Failed to send message. Please try again.' : ''}
+          </span>
+
+          <aside className="contact-sidebar" aria-label="Direct channels">
             <p className="contact-sidebar__heading">// DIRECT_CHANNELS</p>
             <a href={contact.github} target="_blank" rel="noreferrer" className="contact-link">
               <span className="contact-link__prefix">$</span> open github.com/ammar

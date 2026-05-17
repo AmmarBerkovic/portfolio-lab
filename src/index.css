@@ -69,8 +69,6 @@ html { scrollbar-width: thin; scrollbar-color: #94a3b8 var(--color-bg); }
 ::-webkit-scrollbar-thumb { background: #94a3b8; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-cyan); }
 
-html { scrollbar-width: thin; scrollbar-color: #94a3b8 var(--color-bg); }
-
 /* Shared chip styles */
 .chip {
   display: inline-block;
@@ -191,6 +189,20 @@ html { scrollbar-width: thin; scrollbar-color: #94a3b8 var(--color-bg); }
 .animate-entry.visible {
   opacity: 1;
   transform: none;
+}
+
+/* Keyboard focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
 }
 
 @media (max-width: 767px) {

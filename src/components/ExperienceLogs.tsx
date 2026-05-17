@@ -14,7 +14,7 @@ export default function ExperienceLogs() {
         <div className="experience-logs__list">
           {roles.map((role, i) => (
             <div
-              key={role.company}
+              key={`${role.company}-${role.dateRange}`}
               className={`role-entry animate-entry${isVisible ? ' visible' : ''}`}
               style={{ transitionDelay: `${i * 0.15}s` }}
             >
