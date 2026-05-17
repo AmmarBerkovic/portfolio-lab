@@ -1,0 +1,108 @@
+import { useState, useRef, FormEvent } from 'react'
+import emailjs from '@emailjs/browser'
+import { useIntersection } from '../hooks/useIntersection'
+import { contact } from '../data/content'
+import './ContactUplink.css'
+
+type SendStatus = 'idle' | 'sending' | 'success' | 'error'
+
+const BTN_LABEL: Record<SendStatus, string> = {
+  idle:    'TRANSMIT_PACKET >>',
+  sending: 'TRANSMITTING...',
+  success: 'PACKET_DELIVERED',
+  error:   'TRANSMISSION_FAILED — RETRY',
+}
+
+const BTN_CLASS: Record<SendStatus, string> = {
+  idle:    '',
+  sending: '',
+  success: 'submit-btn--success',
+  error:   'submit-btn--error',
+}
+
+export default function ContactUplink() {
+  const [ref, isVisible] = useIntersection<HTMLElement>()
+  const formRef = useRef<HTMLFormElement>(null)
+  const [status, setStatus] = useState<SendStatus>('idle')
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    if (status === 'sending') return
+    setStatus('sending')
+    try {
+      await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formRef.current!,
+        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY },
+      )
+      setStatus('success')
+      formRef.current?.reset()
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  return (
+    <section id="contact-uplink" ref={ref}>
+      <div className="section-inner">
+        <p className="section-label">// OPEN_CHANNEL</p>
+        <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: 32, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--color-text)' }}>
+          Contact Uplink
+        </h2>
+
+        <div className={`contact-uplink__layout animate-entry${isVisible ? ' visible' : ''}`}>
+          <form className="contact-form" ref={formRef} onSubmit={handleSubmit}>
+            <div className="field-group">
+              <label className="field-label" htmlFor="from_name">IDENTIFIER</label>
+              <div className="field-wrapper">
+                <input id="from_name" name="from_name" className="field-input" type="text" required autoComplete="name" />
+                <span className="bracket-bl" />
+                <span className="bracket-br" />
+              </div>
+            </div>
+
+            <div className="field-group">
+              <label className="field-label" htmlFor="from_email">RELAY_ADDRESS</label>
+              <div className="field-wrapper">
+                <input id="from_email" name="from_email" className="field-input" type="email" required autoComplete="email" />
+                <span className="bracket-bl" />
+                <span className="bracket-br" />
+              </div>
+            </div>
+
+            <div className="field-group">
+              <label className="field-label" htmlFor="message">MESSAGE_PACKET</label>
+              <div className="field-wrapper">
+                <textarea id="message" name="message" className="field-textarea" required />
+                <span className="bracket-bl" />
+                <span className="bracket-br" />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className={`submit-btn ${BTN_CLASS[status]}`}
+              disabled={status === 'sending' || status === 'success'}
+            >
+              {BTN_LABEL[status]}
+            </button>
+          </form>
+
+          <aside className="contact-sidebar">
+            <p className="contact-sidebar__heading">// DIRECT_CHANNELS</p>
+            <a href={contact.github} target="_blank" rel="noreferrer" className="contact-link">
+              <span className="contact-link__prefix">$</span> open github.com/ammar
+            </a>
+            <a href={contact.linkedin} target="_blank" rel="noreferrer" className="contact-link">
+              <span className="contact-link__prefix">$</span> open linkedin.com/in/ammar
+            </a>
+            <a href={`mailto:${contact.email}`} className="contact-link">
+              <span className="contact-link__prefix">$</span> send {contact.email}
+            </a>
+          </aside>
+        </div>
+      </div>
+    </section>
+  )
+}
