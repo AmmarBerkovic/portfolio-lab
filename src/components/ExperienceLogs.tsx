@@ -27,6 +27,9 @@ export default function ExperienceLogs() {
                   <span key={chip.label} className={`chip chip--${chip.color}`}>{chip.label}</span>
                 ))}
               </div>
+              <div className="role-entry__status">
+                [ENTRY_STATUS: {role.status}]
+              </div>
             </div>
           ))}
         </div>

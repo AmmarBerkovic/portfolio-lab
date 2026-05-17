@@ -28,6 +28,12 @@ export default function ActiveProjects() {
                 <span className={`status-dot ${STATUS_DOT[project.status]}`} />
               </div>
 
+              {project.imageUrl && (
+                <div className="project-card__image">
+                  <img src={project.imageUrl} alt={project.name} />
+                </div>
+              )}
+
               <div className="project-card__body">
                 <h3 className="project-card__name">{project.name}</h3>
                 <p className="project-card__desc">{project.description}</p>

@@ -79,6 +79,16 @@
   gap: 8px;
 }
 
+.role-entry__status {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  opacity: 0.5;
+  margin-top: 10px;
+}
+
 /* Slide-left entry animation override */
 .role-entry.animate-entry {
   transform: translateX(-16px);

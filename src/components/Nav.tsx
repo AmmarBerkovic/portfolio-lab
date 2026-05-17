@@ -7,6 +7,14 @@ const SECTION_IDS = navLinks.map(({ href }) => href.slice(1))
 export default function Nav() {
   const [activeId, setActiveId] = useState('command-center')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [utcTime, setUtcTime] = useState(() => new Date().toUTCString().slice(17, 25))
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setUtcTime(new Date().toUTCString().slice(17, 25))
+    }, 1000)
+    return () => clearInterval(id)
+  }, [])
 
   useEffect(() => {
     const observers: IntersectionObserver[] = []
@@ -47,6 +55,11 @@ export default function Nav() {
             </li>
           ))}
         </ul>
+
+        <div className="nav__status">
+          <span className="nav__status-badge">STATUS: NOMINAL</span>
+          <span className="nav__status-time">[UTC: {utcTime}]</span>
+        </div>
 
         <button
           className="nav__hamburger"

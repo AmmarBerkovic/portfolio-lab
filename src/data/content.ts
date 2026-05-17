@@ -29,6 +29,7 @@ export interface Role {
   title: string
   company: string
   description: string
+  status: 'ACTIVE' | 'ARCHIVED'
   chips: TechChip[]
 }
 
@@ -40,6 +41,7 @@ export interface Project {
   coordinates: string
   repoUrl: string
   liveUrl: string
+  imageUrl?: string
   chips: TechChip[]
 }
 
@@ -117,6 +119,7 @@ export const roles: Role[] = [
     company: 'Neural Dynamics',
     description:
       'Led architecture of a real-time telemetry platform processing 4M events/day. Reduced p99 API latency from 820ms to 140ms through query optimization and strategic caching layers.',
+    status: 'ACTIVE',
     chips: [
       { label: 'Node.js',    color: 'cyan' },
       { label: 'React',      color: 'cyan' },
@@ -130,6 +133,7 @@ export const roles: Role[] = [
     company: 'Cyber Sys Inc.',
     description:
       'Built and maintained a multi-tenant SaaS platform serving 300+ enterprise clients. Owned the migration from a monolithic Rails app to a Node.js microservices architecture.',
+    status: 'ARCHIVED',
     chips: [
       { label: 'Node.js',    color: 'cyan' },
       { label: 'PostgreSQL', color: 'cyan' },
@@ -143,6 +147,7 @@ export const roles: Role[] = [
     company: 'Axiom Labs',
     description:
       'Developed data visualization dashboards for financial analytics. Implemented a custom WebGL charting library reducing render time for 100k-point datasets from 3s to 180ms.',
+    status: 'ARCHIVED',
     chips: [
       { label: 'JavaScript', color: 'amber' },
       { label: 'D3.js',      color: 'violet' },
