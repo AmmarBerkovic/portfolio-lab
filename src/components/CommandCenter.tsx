@@ -107,6 +107,7 @@ export default function CommandCenter() {
                 className="command-center__photo"
               />
               <div className="command-center__scanlines" />
+              <div className="command-center__scan-line" />
               <div className="command-center__auth-badge">
                 <span>AUTHENTICATED_ENTITY</span>
               </div>
