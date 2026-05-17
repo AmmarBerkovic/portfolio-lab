@@ -9,9 +9,7 @@ export default function ExperienceLogs() {
     <section id="experience-logs" ref={ref}>
       <div className="section-inner">
         <p className="section-label">// SYSTEM_AUDIT_LOG</p>
-        <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: 32, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--color-text)' }}>
-          Experience Logs
-        </h2>
+        <h2 className="section-heading">Experience Logs</h2>
 
         <div className="experience-logs__list">
           {roles.map((role, i) => (

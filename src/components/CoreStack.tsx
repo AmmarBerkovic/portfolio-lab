@@ -9,9 +9,7 @@ export default function CoreStack() {
     <section id="core-stack" ref={ref}>
       <div className="section-inner">
         <p className="section-label">// ENGINEERING_DOMAINS</p>
-        <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: 32, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--color-text)' }}>
-          Core Stack
-        </h2>
+        <h2 className="section-heading">Core Stack</h2>
 
         <div className="core-stack__grid">
           {domains.map((domain, i) => (

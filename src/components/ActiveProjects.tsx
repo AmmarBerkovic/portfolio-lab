@@ -14,9 +14,7 @@ export default function ActiveProjects() {
     <section id="active-projects" ref={ref}>
       <div className="section-inner">
         <p className="section-label">// PROJECT_ARCHIVE</p>
-        <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: 32, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--color-text)' }}>
-          Active Projects
-        </h2>
+        <h2 className="section-heading">Active Projects</h2>
 
         <div className="active-projects__grid">
           {projects.map((project, i) => (

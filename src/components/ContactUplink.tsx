@@ -1,4 +1,4 @@
-import { useState, useRef, FormEvent } from 'react'
+import { useState, useRef, useEffect, FormEvent } from 'react'
 import emailjs from '@emailjs/browser'
 import { useIntersection } from '../hooks/useIntersection'
 import { contact } from '../data/content'
@@ -25,21 +25,30 @@ export default function ContactUplink() {
   const formRef = useRef<HTMLFormElement>(null)
   const [status, setStatus] = useState<SendStatus>('idle')
 
+  const isMounted = useRef(true)
+
+  useEffect(() => {
+    isMounted.current = true
+    return () => { isMounted.current = false }
+  }, [])
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    if (status === 'sending') return
+    if (status === 'sending' || !formRef.current) return
     setStatus('sending')
     try {
       await emailjs.sendForm(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        formRef.current!,
+        formRef.current,
         { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY },
       )
-      setStatus('success')
-      formRef.current?.reset()
+      if (isMounted.current) {
+        setStatus('success')
+        formRef.current?.reset()
+      }
     } catch {
-      setStatus('error')
+      if (isMounted.current) setStatus('error')
     }
   }
 
@@ -47,9 +56,7 @@ export default function ContactUplink() {
     <section id="contact-uplink" ref={ref}>
       <div className="section-inner">
         <p className="section-label">// OPEN_CHANNEL</p>
-        <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: 32, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--color-text)' }}>
-          Contact Uplink
-        </h2>
+        <h2 className="section-heading">Contact Uplink</h2>
 
         <div className={`contact-uplink__layout animate-entry${isVisible ? ' visible' : ''}`}>
           <form className="contact-form" ref={formRef} onSubmit={handleSubmit}>
@@ -74,7 +81,7 @@ export default function ContactUplink() {
             <div className="field-group">
               <label className="field-label" htmlFor="message">MESSAGE_PACKET</label>
               <div className="field-wrapper">
-                <textarea id="message" name="message" className="field-textarea" required />
+                <textarea id="message" name="message" className="field-textarea" required autoComplete="off" />
                 <span className="bracket-bl" />
                 <span className="bracket-br" />
               </div>
@@ -82,7 +89,7 @@ export default function ContactUplink() {
 
             <button
               type="submit"
-              className={`submit-btn ${BTN_CLASS[status]}`}
+              className={`btn-primary submit-btn ${BTN_CLASS[status]}`}
               disabled={status === 'sending' || status === 'success'}
             >
               {BTN_LABEL[status]}

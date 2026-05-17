@@ -87,22 +87,13 @@
 }
 
 .submit-btn {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #000;
-  background: var(--color-cyan);
-  border: 1px solid var(--color-cyan);
   padding: 14px 24px;
   width: 100%;
-  cursor: pointer;
   transition: background 0.2s, box-shadow 0.2s, opacity 0.2s;
 }
 
 .submit-btn:hover:not(:disabled) {
-  background: #67e8f9;
+  background: var(--color-cyan-light);
   box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
 }
 
