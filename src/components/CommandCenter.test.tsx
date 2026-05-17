@@ -19,13 +19,13 @@ describe('CommandCenter', () => {
     expect(img).toHaveClass('command-center__photo')
   })
 
-  test('renders top-left coordinate label', () => {
+  test('renders system badge', () => {
     render(<CommandCenter />)
-    expect(screen.getByText('PERS_ID: ABK-001')).toBeInTheDocument()
+    expect(screen.getByText('SYSTEM_V2.4_READY')).toBeInTheDocument()
   })
 
-  test('renders frame status bar', () => {
+  test('renders frame auth header', () => {
     render(<CommandCenter />)
-    expect(screen.getByText(/IDENTITY_VERIFIED/)).toBeInTheDocument()
+    expect(screen.getByText('AUTH_PROTO_6741')).toBeInTheDocument()
   })
 })

@@ -62,6 +62,7 @@ export const navLinks: NavLink[] = [
 export const hero = {
   name: 'AMMAR_BERKOVIC',
   title: 'SENIOR FULL-STACK ENGINEER // LAB_OS v2.4',
+  bio: 'Forging high-performance digital infrastructure. Senior developer specialized in distributed architectures and precision UI engineering.',
   statusIndicators: [
     { label: 'SYSTEMS_ONLINE',    color: 'green' },
     { label: 'AVAILABLE_FOR_HIRE', color: 'cyan' },
@@ -221,7 +222,7 @@ export const projects: Project[] = [
 ]
 
 export const contact: ContactInfo = {
-  github:   'https://github.com/ammar',
-  linkedin: 'https://linkedin.com/in/ammar',
-  email:    'ammar@example.com',
+  github:   'https://github.com/AmmarBerkovic',
+  linkedin: 'https://www.linkedin.com/in/ammar-berkovic-8b6422247/',
+  email:    'berkovicammar1@gmail.com',
 }
