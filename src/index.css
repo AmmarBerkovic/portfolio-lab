@@ -192,3 +192,9 @@ html { scrollbar-width: thin; scrollbar-color: #94a3b8 var(--color-bg); }
   opacity: 1;
   transform: none;
 }
+
+@media (max-width: 767px) {
+  .section-inner {
+    padding: 60px 20px;
+  }
+}
