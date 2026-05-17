@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, FormEvent } from 'react'
+import { useState, useRef, useEffect, type FormEvent } from 'react'
 import emailjs from '@emailjs/browser'
 import { useIntersection } from '../hooks/useIntersection'
 import { contact } from '../data/content'
