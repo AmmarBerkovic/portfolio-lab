@@ -24,6 +24,11 @@ export interface Domain {
   chips: TechChip[]
 }
 
+export interface RoleMetric {
+  label: string
+  value: string
+}
+
 export interface Role {
   dateRange: string
   title: string
@@ -31,6 +36,7 @@ export interface Role {
   description: string
   status: 'ACTIVE' | 'ARCHIVED'
   chips: TechChip[]
+  metrics: RoleMetric[]
 }
 
 export interface Project {
@@ -127,6 +133,11 @@ export const roles: Role[] = [
       { label: 'ClickHouse', color: 'violet' },
       { label: 'Kubernetes', color: 'amber' },
     ],
+    metrics: [
+      { label: 'EVENTS/DAY',        value: '4M+' },
+      { label: 'LATENCY_REDUCTION', value: '83%' },
+      { label: 'TENURE',            value: '3 YRS' },
+    ],
   },
   {
     dateRange: '2019 — 2022',
@@ -141,6 +152,11 @@ export const roles: Role[] = [
       { label: 'React',      color: 'cyan' },
       { label: 'AWS',        color: 'amber' },
     ],
+    metrics: [
+      { label: 'ENTERPRISE_CLIENTS', value: '300+' },
+      { label: 'ARCH_MIGRATION',     value: '100%' },
+      { label: 'TENURE',             value: '3 YRS' },
+    ],
   },
   {
     dateRange: '2015 — 2019',
@@ -154,6 +170,11 @@ export const roles: Role[] = [
       { label: 'D3.js',      color: 'violet' },
       { label: 'WebGL',      color: 'violet' },
       { label: 'Python',     color: 'amber' },
+    ],
+    metrics: [
+      { label: 'RENDER_TIME_DELTA', value: '−94%' },
+      { label: 'DATASET_SIZE',      value: '100K PTS' },
+      { label: 'TENURE',            value: '4 YRS' },
     ],
   },
 ]
