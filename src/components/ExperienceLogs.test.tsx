@@ -20,9 +20,11 @@ describe('ExperienceLogs', () => {
 
   test('renders all three role entries in the left panel', () => {
     render(<ExperienceLogs />)
-    expect(screen.getByText('Senior Full-Stack Engineer')).toBeInTheDocument()
-    expect(screen.getByText('Full-Stack Engineer')).toBeInTheDocument()
-    expect(screen.getByText('Frontend Engineer')).toBeInTheDocument()
+    const buttons = screen.getAllByRole('button')
+    const titles = buttons.map(b => b.querySelector('.role-entry__title')?.textContent)
+    expect(titles).toContain('Senior Full-Stack Engineer')
+    expect(titles).toContain('Full-Stack Engineer')
+    expect(titles).toContain('Frontend Engineer')
   })
 
   test('first role is active by default — its title appears in the detail panel', () => {
