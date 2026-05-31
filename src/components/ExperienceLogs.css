@@ -427,10 +427,10 @@
 }
 
 @keyframes scan-sweep {
-  0%   { top: 0%;   opacity: 0; }
+  0%   { transform: translateY(0);    opacity: 0; }
   5%   { opacity: 1; }
   95%  { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
+  100% { transform: translateY(100vh); opacity: 0; }
 }
 
 /* ══════════════════════════════════
@@ -471,9 +471,8 @@
     align-items: flex-start;
     gap: 4px;
     padding: 14px 20px;
-    border-bottom: none;
-    border-left: none;
     border-bottom: 2px solid transparent;
+    border-left: none;
     flex-shrink: 0;
     white-space: nowrap;
     opacity: 0.5;
