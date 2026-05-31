@@ -16,6 +16,7 @@ export default function ExperienceLogs() {
   }
 
   function handleExitEnd() {
+    if (!exiting) return
     setActiveRole(nextRole.current)
     setExiting(false)
   }
