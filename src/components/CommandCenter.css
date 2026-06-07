@@ -1,5 +1,5 @@
 .command-center {
-  min-height: 100vh;
+  padding: 80px var(--margin-edge) 100px;
   display: flex;
   align-items: center;
   background:
@@ -187,6 +187,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  align-items: center;
 }
 
 /* ── Right column ── */
