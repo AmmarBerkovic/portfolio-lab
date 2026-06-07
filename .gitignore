@@ -32,3 +32,9 @@ dist-ssr
 *.sw?
 
 .vercel
+
+# Playwright screenshots
+.screenshots/
+
+# Claude Code tooling
+.superpowers/
