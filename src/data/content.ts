@@ -128,10 +128,13 @@ export const roles: Role[] = [
       'Rebuilt the multi-tenant messaging platform behind a provider-agnostic adapter — every email, SMS and push the product sends, with per-country routing that balances cost against fraud exposure. Designed the Affiliations Rules Engine and wired the Stripe billing paths it feeds.',
     status: 'ACTIVE',
     chips: [
-      { label: 'Node.js', color: 'cyan' },
-      { label: 'Golang',  color: 'cyan' },
-      { label: 'Stripe',  color: 'violet' },
-      { label: 'AWS',     color: 'amber' },
+      { label: 'Node.js',    color: 'cyan' },
+      { label: 'Golang',     color: 'cyan' },
+      { label: 'PostgreSQL', color: 'cyan' },
+      { label: 'Stripe',     color: 'violet' },
+      { label: 'Grafana',    color: 'violet' },
+      { label: 'Sentry',     color: 'violet' },
+      { label: 'AWS',        color: 'amber' },
     ],
     metrics: [
       { label: 'DELIVERY_CHANNELS', value: 'EMAIL/SMS/PUSH' },
