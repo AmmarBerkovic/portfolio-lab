@@ -150,10 +150,12 @@ export const roles: Role[] = [
       'Architected enterprise content models in CMS platforms for the London Stock Exchange, Daily Mail and Poker.org. Resolved Core Web Vitals bottlenecks across multi-tier applications and orchestrated AWS monitoring, audit trails and caching layers to hold performance at peak load.',
     status: 'ARCHIVED',
     chips: [
-      { label: 'Next.js', color: 'cyan' },
-      { label: 'Angular', color: 'cyan' },
-      { label: 'AWS',     color: 'amber' },
-      { label: 'Grafana', color: 'violet' },
+      { label: 'Next.js',    color: 'cyan' },
+      { label: 'React',      color: 'cyan' },
+      { label: 'TypeScript', color: 'cyan' },
+      { label: 'CSS',        color: 'violet' },
+      { label: 'AWS',        color: 'amber' },
+      { label: 'Grafana',    color: 'violet' },
     ],
     metrics: [
       { label: 'ENTERPRISE_CLIENTS', value: 'LSE / DAILY MAIL' },
