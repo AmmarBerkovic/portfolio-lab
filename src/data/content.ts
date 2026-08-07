@@ -180,7 +180,7 @@ export const roles: Role[] = [
   {
     dateRange: 'SEP 2018 — MAR 2022',
     title: 'Information Technology',
-    company: 'IPI Academy',
+    company: 'IPI Academy // EDUCATION',
     description:
       'Studied the core pillars of object-oriented design, the practical implementation of fundamental data structures, and low-level operating system architecture — process management, memory allocation, and the hardware/software interface.',
     status: 'ARCHIVED',
