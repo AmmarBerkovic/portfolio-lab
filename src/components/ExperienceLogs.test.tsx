@@ -59,6 +59,20 @@ describe('ExperienceLogs', () => {
     expect(metricValues(container)).toEqual(roles[0].metrics.map(m => m.value))
   })
 
+  test('renders the active role chips, in order, with their colour class', () => {
+    const { container } = render(<ExperienceLogs />)
+    const chips = Array.from(
+      container.querySelectorAll('.experience-logs__chips .chip'),
+    )
+
+    expect(chips.map(el => el.textContent)).toEqual(
+      roles[0].chips.map(chip => chip.label),
+    )
+    expect(chips.map(el => el.className)).toEqual(
+      roles[0].chips.map(chip => `chip chip--${chip.color}`),
+    )
+  })
+
   test('clicking same role twice does not break state', async () => {
     const user = userEvent.setup()
     const { container } = render(<ExperienceLogs />)

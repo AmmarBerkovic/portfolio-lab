@@ -86,11 +86,11 @@ export const domains: Domain[] = [
       'Multi-tenant services built for throughput — provider-agnostic adapters, rules engines, and reconciled billing paths.',
     chips: [
       { label: 'Golang',      color: 'cyan' },
+      { label: 'PostgreSQL',  color: 'cyan' },
+      { label: 'Redis',       color: 'amber' },
+      { label: 'MongoDB',     color: 'amber' },
       { label: 'Node.js',     color: 'cyan' },
       { label: 'Spring Boot', color: 'cyan' },
-      { label: 'PostgreSQL',  color: 'cyan' },
-      { label: 'MongoDB',     color: 'amber' },
-      { label: 'Redis',       color: 'amber' },
     ],
   },
   {
@@ -102,8 +102,8 @@ export const domains: Domain[] = [
       { label: 'Next.js',    color: 'cyan' },
       { label: 'React',      color: 'cyan' },
       { label: 'TypeScript', color: 'cyan' },
-      { label: 'Angular',    color: 'cyan' },
       { label: 'CSS',        color: 'violet' },
+      { label: 'Angular',    color: 'cyan' },
     ],
   },
   {
@@ -186,8 +186,8 @@ export const roles: Role[] = [
   },
   {
     dateRange: 'SEP 2018 — MAR 2022',
-    title: 'Information Technology',
-    company: 'IPI Academy // EDUCATION',
+    title: 'Information Technology // EDUCATION',
+    company: 'IPI Academy',
     description:
       'Studied the core pillars of object-oriented design, the practical implementation of fundamental data structures, and low-level operating system architecture — process management, memory allocation, and the hardware/software interface.',
     status: 'ARCHIVED',
