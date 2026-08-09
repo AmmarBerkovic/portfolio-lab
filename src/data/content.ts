@@ -247,6 +247,7 @@ export const projects: Project[] = [
     status: 'active',
     coordinates: '[X:08, Y:19]',
     repoUrl: 'https://github.com/AmmarBerkovic/The-Movie-App',
+    liveUrl: 'https://the-movie-app-silk.vercel.app',
     chips: [
       { label: 'React',      color: 'cyan'   },
       { label: 'TypeScript', color: 'cyan'   },
