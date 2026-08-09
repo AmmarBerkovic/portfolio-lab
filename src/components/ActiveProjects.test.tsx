@@ -68,6 +68,18 @@ describe('ActiveProjects', () => {
     expect(hrefs).toEqual(projects.map(p => p.repoUrl))
   })
 
+  test('renders each chip with its colour class, scoped to that card', () => {
+    const { container } = render(<ActiveProjects />)
+    const classesPerCard = cards(container).map(c =>
+      Array.from(c.querySelectorAll('.project-card__chips .chip')).map(
+        el => el.className,
+      ),
+    )
+    expect(classesPerCard).toEqual(
+      projects.map(p => p.chips.map(chip => `chip chip--${chip.color}`)),
+    )
+  })
+
   test('renders LIVE_DEMO only for projects that have a live url', () => {
     const { container } = render(<ActiveProjects />)
     const liveLinks = Array.from(
