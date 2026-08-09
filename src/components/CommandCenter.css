@@ -424,6 +424,53 @@
   color: rgba(218, 226, 253, 0.28);
 }
 
+/* CV download */
+.command-center__cv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  background: rgba(34, 211, 238, 0.05);
+  text-decoration: none;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.command-center__cv:hover {
+  background: rgba(34, 211, 238, 0.1);
+  border-color: rgba(34, 211, 238, 0.4);
+}
+
+.command-center__cv:focus-visible {
+  outline: 1px solid var(--color-cyan);
+  outline-offset: 2px;
+}
+
+.command-center__cv-main {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.command-center__cv-icon,
+.command-center__cv-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: rgba(218, 226, 253, 0.6);
+  transition: color 0.3s ease;
+}
+
+.command-center__cv:hover .command-center__cv-icon,
+.command-center__cv:hover .command-center__cv-label {
+  color: var(--color-cyan);
+}
+
+.command-center__cv-size {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: rgba(34, 211, 238, 0.4);
+}
+
 /* Scroll hint */
 .command-center__scroll-hint {
   position: absolute;

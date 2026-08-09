@@ -75,6 +75,12 @@ export const hero = {
   ] as StatusIndicator[],
   primaryCta:   { label: 'VIEW_ARCHIVE', href: '#active-projects' },
   secondaryCta: { label: 'OPEN_UPLINK',  href: '#contact-uplink' },
+  cv: {
+    label:    'EXPORT_MANIFEST.PDF',
+    href:     '/CV.pdf',
+    fileName: 'Ammar-Berkovic-CV.pdf', // what the browser saves it as
+    size:     '[158KB]',               // update when replacing public/CV.pdf
+  },
 }
 
 export const domains: Domain[] = [
