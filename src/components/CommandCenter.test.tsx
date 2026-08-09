@@ -1,6 +1,7 @@
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import CommandCenter from './CommandCenter'
+import { hero } from '../data/content'
 
 beforeEach(() => {
   vi.stubGlobal(
@@ -27,5 +28,13 @@ describe('CommandCenter', () => {
   test('renders frame auth header', () => {
     render(<CommandCenter />)
     expect(screen.getByText('AUTH_PROTO_6741')).toBeInTheDocument()
+  })
+
+  test('renders CV download link that saves the file', () => {
+    render(<CommandCenter />)
+    const link = screen.getByRole('link', { name: /download cv/i })
+    expect(link).toHaveTextContent(hero.cv.label)
+    expect(link).toHaveAttribute('href', hero.cv.href)
+    expect(link).toHaveAttribute('download', hero.cv.fileName)
   })
 })

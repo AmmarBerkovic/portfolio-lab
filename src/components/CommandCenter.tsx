@@ -130,6 +130,19 @@ export default function CommandCenter() {
                 <span>TMP: 36.6°C</span>
                 <span>HRT: 62BPM</span>
               </div>
+
+              <a
+                className="command-center__cv"
+                href={hero.cv.href}
+                download={hero.cv.fileName}
+                aria-label={`Download CV, PDF, ${hero.cv.size.replace(/[[\]]/g, '')}`}
+              >
+                <span className="command-center__cv-main">
+                  <span className="command-center__cv-icon" aria-hidden="true">↓</span>
+                  <span className="command-center__cv-label">{hero.cv.label}</span>
+                </span>
+                <span className="command-center__cv-size">{hero.cv.size}</span>
+              </a>
             </div>
           </div>
         </div>
