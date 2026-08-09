@@ -2,6 +2,7 @@ import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import ExperienceLogs from './ExperienceLogs'
+import { roles } from '../data/content'
 
 beforeEach(() => {
   vi.stubGlobal(
@@ -12,52 +13,74 @@ beforeEach(() => {
   )
 })
 
+function metricValues(container: HTMLElement): (string | null)[] {
+  return Array.from(
+    container.querySelectorAll('.experience-logs__metric-value'),
+  ).map(el => el.textContent)
+}
+
 describe('ExperienceLogs', () => {
   test('renders section audit label', () => {
     render(<ExperienceLogs />)
     expect(screen.getByText(/SYSTEM_AUDIT_LOG/)).toBeInTheDocument()
   })
 
-  test('renders all three role entries in the left panel', () => {
+  test('renders one left-panel entry per role, in order', () => {
     render(<ExperienceLogs />)
     const buttons = screen.getAllByRole('button')
+    expect(buttons).toHaveLength(roles.length)
+
     const titles = buttons.map(b => b.querySelector('.role-entry__title')?.textContent)
-    expect(titles).toContain('Senior Full-Stack Engineer')
-    expect(titles).toContain('Full-Stack Engineer')
-    expect(titles).toContain('Frontend Engineer')
+    expect(titles).toEqual(roles.map(r => r.title))
   })
 
   test('first role is active by default — its title appears in the detail panel', () => {
     render(<ExperienceLogs />)
-    const headings = screen.getAllByText('Senior Full-Stack Engineer')
-    expect(headings.length).toBeGreaterThanOrEqual(2)
+    expect(screen.getAllByText(roles[0].title).length).toBeGreaterThanOrEqual(2)
   })
 
   test('clicking a role entry changes the active detail content', async () => {
     const user = userEvent.setup()
     render(<ExperienceLogs />)
 
-    const frontendBtn = screen.getByRole('button', { name: /Frontend Engineer/ })
-    await user.click(frontendBtn)
+    const last = roles[roles.length - 1]
+    const buttons = screen.getAllByRole('button')
+    await user.click(buttons[buttons.length - 1])
 
-    expect(await screen.findByText(/Axiom Labs/, { selector: '.experience-logs__role-company' })).toBeInTheDocument()
+    expect(
+      await screen.findByText(`// ${last.company}`, {
+        selector: '.experience-logs__role-company',
+      }),
+    ).toBeInTheDocument()
   })
 
-  test('metrics for the active role are displayed', () => {
-    render(<ExperienceLogs />)
-    expect(screen.getByText('4M+')).toBeInTheDocument()
-    expect(screen.getByText('83%')).toBeInTheDocument()
-    expect(screen.getByText('3 YRS')).toBeInTheDocument()
+  test('metrics for the active role are displayed, in order', () => {
+    const { container } = render(<ExperienceLogs />)
+    expect(metricValues(container)).toEqual(roles[0].metrics.map(m => m.value))
+  })
+
+  test('renders the active role chips, in order, with their colour class', () => {
+    const { container } = render(<ExperienceLogs />)
+    const chips = Array.from(
+      container.querySelectorAll('.experience-logs__chips .chip'),
+    )
+
+    expect(chips.map(el => el.textContent)).toEqual(
+      roles[0].chips.map(chip => chip.label),
+    )
+    expect(chips.map(el => el.className)).toEqual(
+      roles[0].chips.map(chip => `chip chip--${chip.color}`),
+    )
   })
 
   test('clicking same role twice does not break state', async () => {
     const user = userEvent.setup()
-    render(<ExperienceLogs />)
+    const { container } = render(<ExperienceLogs />)
 
-    const srBtn = screen.getByRole('button', { name: /Senior Full-Stack Engineer/ })
-    await user.click(srBtn)
-    await user.click(srBtn)
+    const first = screen.getAllByRole('button')[0]
+    await user.click(first)
+    await user.click(first)
 
-    expect(screen.getByText('4M+')).toBeInTheDocument()
+    expect(metricValues(container)).toEqual(roles[0].metrics.map(m => m.value))
   })
 })

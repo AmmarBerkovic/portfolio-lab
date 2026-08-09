@@ -28,12 +28,6 @@ export default function ActiveProjects() {
                 <span className={`status-dot ${STATUS_DOT[project.status]}`} />
               </div>
 
-              {project.imageUrl && (
-                <div className="project-card__image">
-                  <img src={project.imageUrl} alt={project.name} />
-                </div>
-              )}
-
               <div className="project-card__body">
                 <h3 className="project-card__name">{project.name}</h3>
                 <p className="project-card__desc">{project.description}</p>
@@ -50,9 +44,11 @@ export default function ActiveProjects() {
                   <a href={project.repoUrl} target="_blank" rel="noreferrer" className="btn-ghost">
                     VIEW_REPO
                   </a>
-                  <a href={project.liveUrl} target="_blank" rel="noreferrer" className="btn-ghost">
-                    LIVE_DEMO
-                  </a>
+                  {project.liveUrl && (
+                    <a href={project.liveUrl} target="_blank" rel="noreferrer" className="btn-ghost">
+                      LIVE_DEMO
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

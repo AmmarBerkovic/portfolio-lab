@@ -46,8 +46,7 @@ export interface Project {
   status: ProjectStatus
   coordinates: string
   repoUrl: string
-  liveUrl: string
-  imageUrl?: string
+  liveUrl?: string
   chips: TechChip[]
 }
 
@@ -83,98 +82,124 @@ export const domains: Domain[] = [
     id: 'MOD-001',
     title: 'Backend Architecture',
     description:
-      'Designing resilient, high-throughput server systems with a focus on distributed patterns and operational clarity.',
+      'Multi-tenant services built for throughput — provider-agnostic adapters, rules engines, and reconciled billing paths.',
     chips: [
-      { label: 'Node.js',    color: 'cyan' },
-      { label: 'PostgreSQL', color: 'cyan' },
-      { label: 'Redis',      color: 'amber' },
-      { label: 'Docker',     color: 'violet' },
-      { label: 'GraphQL',    color: 'cyan' },
+      { label: 'Golang',      color: 'cyan' },
+      { label: 'PostgreSQL',  color: 'cyan' },
+      { label: 'Redis',       color: 'amber' },
+      { label: 'MongoDB',     color: 'amber' },
+      { label: 'Node.js',     color: 'cyan' },
+      { label: 'Spring Boot', color: 'cyan' },
     ],
   },
   {
     id: 'MOD-002',
     title: 'Interface Engineering',
     description:
-      'Building precise, performant UIs with a systems-level understanding of the browser rendering pipeline.',
+      'Enterprise content platforms for high-traffic publishers, tuned against Core Web Vitals to convert speed into reach.',
     chips: [
+      { label: 'Next.js',    color: 'cyan' },
       { label: 'React',      color: 'cyan' },
       { label: 'TypeScript', color: 'cyan' },
       { label: 'CSS',        color: 'violet' },
-      { label: 'Vite',       color: 'amber' },
-      { label: 'WebGL',      color: 'violet' },
+      { label: 'Angular',    color: 'cyan' },
     ],
   },
   {
     id: 'MOD-003',
-    title: 'Data & Systems',
+    title: 'Cloud & Observability',
     description:
-      'Instrumenting data pipelines and analytics infrastructure to extract signal from operational noise.',
+      'Health monitoring, audit trails and caching strategies that hold peak-load performance — and prove it.',
     chips: [
-      { label: 'Python',       color: 'amber' },
-      { label: 'Apache Kafka', color: 'cyan' },
-      { label: 'ClickHouse',   color: 'violet' },
-      { label: 'dbt',          color: 'amber' },
+      { label: 'AWS',     color: 'amber' },
+      { label: 'Docker',  color: 'violet' },
+      { label: 'Grafana', color: 'violet' },
+      { label: 'Sentry',  color: 'violet' },
     ],
   },
 ]
 
 export const roles: Role[] = [
   {
-    dateRange: '2022 — PRESENT',
-    title: 'Senior Full-Stack Engineer',
-    company: 'Neural Dynamics',
+    dateRange: 'APR 2025 — PRESENT',
+    title: 'Backend Developer',
+    company: 'Pickleball Inc',
     description:
-      'Led architecture of a real-time telemetry platform processing 4M events/day. Reduced p99 API latency from 820ms to 140ms through query optimization and strategic caching layers.',
+      'Rebuilt the multi-tenant messaging platform behind a provider-agnostic adapter — every email, SMS and push the product sends, with per-country routing that balances cost against fraud exposure. Designed the Affiliations Rules Engine and wired the Stripe billing paths it feeds.',
     status: 'ACTIVE',
     chips: [
-      { label: 'Node.js',    color: 'cyan' },
-      { label: 'React',      color: 'cyan' },
-      { label: 'ClickHouse', color: 'violet' },
-      { label: 'Kubernetes', color: 'amber' },
-    ],
-    metrics: [
-      { label: 'EVENTS/DAY',        value: '4M+' },
-      { label: 'LATENCY_REDUCTION', value: '83%' },
-      { label: 'TENURE',            value: '3 YRS' },
-    ],
-  },
-  {
-    dateRange: '2019 — 2022',
-    title: 'Full-Stack Engineer',
-    company: 'Cyber Sys Inc.',
-    description:
-      'Built and maintained a multi-tenant SaaS platform serving 300+ enterprise clients. Owned the migration from a monolithic Rails app to a Node.js microservices architecture.',
-    status: 'ARCHIVED',
-    chips: [
-      { label: 'Node.js',    color: 'cyan' },
+      { label: 'Golang',     color: 'cyan' },
       { label: 'PostgreSQL', color: 'cyan' },
-      { label: 'React',      color: 'cyan' },
+      { label: 'Redis',      color: 'amber' },
+      { label: 'Docker',     color: 'violet' },
+      { label: 'Stripe',     color: 'violet' },
+      { label: 'Grafana',    color: 'violet' },
+      { label: 'Sentry',     color: 'violet' },
       { label: 'AWS',        color: 'amber' },
     ],
     metrics: [
-      { label: 'ENTERPRISE_CLIENTS', value: '300+' },
-      { label: 'ARCH_MIGRATION',     value: '100%' },
-      { label: 'TENURE',             value: '3 YRS' },
+      { label: 'DELIVERY_CHANNELS', value: 'EMAIL/SMS/PUSH' },
+      { label: 'ARCHITECTURE',      value: 'MULTI-TENANT' },
+      { label: 'TENURE',            value: '1.3 YRS' },
     ],
   },
   {
-    dateRange: '2015 — 2019',
-    title: 'Frontend Engineer',
-    company: 'Axiom Labs',
+    dateRange: 'JUL 2021 — JAN 2025',
+    title: 'Full Stack Engineer',
+    company: 'Glide Tech',
     description:
-      'Developed data visualization dashboards for financial analytics. Implemented a custom WebGL charting library reducing render time for 100k-point datasets from 3s to 180ms.',
+      'Architected enterprise content models in CMS platforms for the London Stock Exchange, Daily Mail and Poker.org. Resolved Core Web Vitals bottlenecks across multi-tier applications and orchestrated AWS monitoring, audit trails and caching layers to hold performance at peak load.',
     status: 'ARCHIVED',
     chips: [
-      { label: 'JavaScript', color: 'amber' },
-      { label: 'D3.js',      color: 'violet' },
-      { label: 'WebGL',      color: 'violet' },
-      { label: 'Python',     color: 'amber' },
+      { label: 'Next.js',    color: 'cyan' },
+      { label: 'React',      color: 'cyan' },
+      { label: 'TypeScript', color: 'cyan' },
+      { label: 'CSS',        color: 'violet' },
+      { label: 'AWS',        color: 'amber' },
+      { label: 'Grafana',    color: 'violet' },
     ],
     metrics: [
-      { label: 'RENDER_TIME_DELTA', value: '−94%' },
-      { label: 'DATASET_SIZE',      value: '100K PTS' },
-      { label: 'TENURE',            value: '4 YRS' },
+      { label: 'ENTERPRISE_CLIENTS', value: 'LSE / DAILY MAIL' },
+      { label: 'AVAILABILITY',       value: '99.9%' },
+      { label: 'TENURE',             value: '3.5 YRS' },
+    ],
+  },
+  {
+    dateRange: 'JUL 2019 — JUL 2020',
+    title: 'Intern Developer',
+    company: 'Cape Ann Enterprises',
+    description:
+      'Built the technical logic for a performance-management application on the MEAN stack — MongoDB, Express, Angular and Node.js unified behind a single data-driven layer. Contributed through rapid sprint cycles from initial design through to deployment.',
+    status: 'ARCHIVED',
+    chips: [
+      { label: 'MongoDB', color: 'amber' },
+      { label: 'Express', color: 'violet' },
+      { label: 'Angular', color: 'cyan' },
+      { label: 'Node.js', color: 'cyan' },
+    ],
+    metrics: [
+      { label: 'STACK',       value: 'MEAN' },
+      { label: 'METHODOLOGY', value: 'AGILE' },
+      { label: 'TENURE',      value: '1 YR' },
+    ],
+  },
+  {
+    dateRange: 'SEP 2018 — MAR 2022',
+    title: 'Information Technology // EDUCATION',
+    company: 'IPI Academy',
+    description:
+      'Studied the core pillars of object-oriented design, the practical implementation of fundamental data structures, and low-level operating system architecture — process management, memory allocation, and the hardware/software interface.',
+    status: 'ARCHIVED',
+    chips: [
+      { label: 'OOP',               color: 'cyan' },
+      { label: 'Data Structures',   color: 'cyan' },
+      { label: 'Operating Systems', color: 'amber' },
+      { label: 'Algorithms',        color: 'violet' },
+    ],
+    metrics: [
+      { label: 'FOCUS',      value: 'SYSTEMS ARCH' },
+      { label: 'DISCIPLINE', value: 'CS FUNDAMENTALS' },
+      { label: 'DURATION',   value: '3.5 YRS' },
     ],
   },
 ]
@@ -182,62 +207,86 @@ export const roles: Role[] = [
 export const projects: Project[] = [
   {
     id: 'PROJ-001',
-    name: 'Telemetry Core',
+    name: 'Taggz',
     description:
-      'Real-time event processing engine with sub-100ms latency, handling 4M events/day across distributed ingestion nodes.',
+      'Standalone tagging and filtering engine — JWT-guarded NestJS API over Prisma and Postgres, with content-addressed file storage isolated per business.',
     status: 'active',
     coordinates: '[X:04, Y:12]',
-    repoUrl: 'https://github.com',
-    liveUrl: 'https://example.com',
+    repoUrl: 'https://github.com/AmmarBerkovic/taggz',
     chips: [
-      { label: 'Node.js',    color: 'cyan' },
-      { label: 'Kafka',      color: 'cyan' },
-      { label: 'ClickHouse', color: 'violet' },
+      { label: 'NestJS',     color: 'cyan'   },
+      { label: 'PostgreSQL', color: 'cyan'   },
+      { label: 'Prisma',     color: 'violet' },
     ],
   },
   {
     id: 'PROJ-002',
-    name: 'Signal UI',
+    name: 'Portfolio Lab',
     description:
-      'Component library and design system for high-density data interfaces. Zero runtime dependencies, full TypeScript coverage.',
+      'This site — a React 19 single-page portfolio on Vite, with scroll-reveal sections and a retro terminal HUD built from plain colocated CSS.',
     status: 'active',
     coordinates: '[X:11, Y:07]',
-    repoUrl: 'https://github.com',
-    liveUrl: 'https://example.com',
+    repoUrl: 'https://github.com/AmmarBerkovic/portfolio-lab',
     chips: [
-      { label: 'React',      color: 'cyan' },
-      { label: 'TypeScript', color: 'cyan' },
-      { label: 'CSS',        color: 'violet' },
+      { label: 'React',      color: 'cyan'   },
+      { label: 'TypeScript', color: 'cyan'   },
+      { label: 'Vite',       color: 'violet' },
     ],
   },
   {
     id: 'PROJ-003',
-    name: 'Vault API',
+    name: 'The Movie App',
     description:
-      'Zero-trust authentication gateway with per-request encryption, rate limiting, and full audit trail logging.',
-    status: 'in-progress',
+      'Browses the full TMDB catalogue through a Redux-backed store — filtering, search and trailer playback held in one predictable state tree.',
+    status: 'active',
     coordinates: '[X:08, Y:19]',
-    repoUrl: 'https://github.com',
-    liveUrl: 'https://example.com',
+    repoUrl: 'https://github.com/AmmarBerkovic/The-Movie-App',
     chips: [
-      { label: 'Node.js',    color: 'cyan' },
-      { label: 'PostgreSQL', color: 'cyan' },
-      { label: 'Redis',      color: 'amber' },
+      { label: 'React',      color: 'cyan'   },
+      { label: 'TypeScript', color: 'cyan'   },
+      { label: 'Redux',      color: 'violet' },
     ],
   },
   {
     id: 'PROJ-004',
-    name: 'DataStream',
+    name: 'Go User API',
     description:
-      'Self-hosted analytics pipeline with SQL-based transformation layer, webhook routing, and live dashboard rendering.',
+      'RESTful user service on a layered Go architecture — Chi routing over GORM repositories, with paginated reads and Protobuf-generated models.',
     status: 'in-progress',
     coordinates: '[X:15, Y:03]',
-    repoUrl: 'https://github.com',
-    liveUrl: 'https://example.com',
+    repoUrl: 'https://github.com/AmmarBerkovic/Go-User-API',
     chips: [
-      { label: 'Python',     color: 'amber' },
-      { label: 'dbt',        color: 'amber' },
-      { label: 'ClickHouse', color: 'violet' },
+      { label: 'Golang',   color: 'cyan'   },
+      { label: 'MySQL',    color: 'cyan'   },
+      { label: 'Protobuf', color: 'violet' },
+    ],
+  },
+  {
+    id: 'PROJ-005',
+    name: 'Mirror Client',
+    description:
+      'Server-rendered Angular workspace for continuous activity tracking — Material-driven records, filters and progress views over the Mirror API.',
+    status: 'in-progress',
+    coordinates: '[X:02, Y:21]',
+    repoUrl: 'https://github.com/AmmarBerkovic/MirrorFE',
+    chips: [
+      { label: 'Angular',    color: 'cyan'   },
+      { label: 'TypeScript', color: 'cyan'   },
+      { label: 'RxJS',       color: 'violet' },
+    ],
+  },
+  {
+    id: 'PROJ-006',
+    name: 'Mirror API',
+    description:
+      'Express and Mongoose service behind Mirror — CRUD endpoints over MongoDB collections with query-driven filtering across records.',
+    status: 'in-progress',
+    coordinates: '[X:19, Y:09]',
+    repoUrl: 'https://github.com/AmmarBerkovic/MirrorBE',
+    chips: [
+      { label: 'Node.js', color: 'cyan'   },
+      { label: 'Express', color: 'violet' },
+      { label: 'MongoDB', color: 'amber'  },
     ],
   },
 ]

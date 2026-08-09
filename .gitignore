@@ -38,3 +38,6 @@ dist-ssr
 
 # Claude Code tooling
 .superpowers/
+
+# CV source (contains PII — never commit)
+CV.pdf

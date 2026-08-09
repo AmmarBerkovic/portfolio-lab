@@ -54,22 +54,26 @@ Ordering is reverse-chronological by start date, so IPI Academy (Sep 2018) sorts
 - `dateRange`: `APR 2025 — PRESENT`
 - `status`: `ACTIVE`
 - `description`: "Rebuilt the multi-tenant messaging platform behind a provider-agnostic adapter — every email, SMS and push the product sends, with per-country routing that balances cost against fraud exposure. Designed the Affiliations Rules Engine and wired the Stripe billing paths it feeds."
-- `chips`: Node.js (cyan), Golang (cyan), Stripe (violet), AWS (amber)
+- `chips`: Golang (cyan), PostgreSQL (cyan), Redis (amber), Docker (violet), Stripe (violet), Grafana (violet), Sentry (violet), AWS (amber)
 - `metrics`:
   - `DELIVERY_CHANNELS` → `EMAIL/SMS/PUSH`
   - `ARCHITECTURE` → `MULTI-TENANT`
   - `TENURE` → `1.3 YRS`
+
+> Superseded by 965c714 / 3317b6e / 10613ab (chip revisions) and the final-review fix wave.
 
 ### LOG-002 — Full Stack Engineer // Glide Tech
 
 - `dateRange`: `JUL 2021 — JAN 2025`
 - `status`: `ARCHIVED`
 - `description`: "Architected enterprise content models in CMS platforms for the London Stock Exchange, Daily Mail and Poker.org. Resolved Core Web Vitals bottlenecks across multi-tier applications and orchestrated AWS monitoring, audit trails and caching layers to hold performance at peak load."
-- `chips`: Next.js (cyan), Angular (cyan), AWS (amber), Grafana (violet)
+- `chips`: Next.js (cyan), React (cyan), TypeScript (cyan), CSS (violet), AWS (amber), Grafana (violet)
 - `metrics`:
   - `ENTERPRISE_CLIENTS` → `LSE / DAILY MAIL`
   - `AVAILABILITY` → `99.9%`
   - `TENURE` → `3.5 YRS`
+
+> Superseded by 965c714 / 3317b6e / 10613ab (chip revisions) and the final-review fix wave.
 
 ### LOG-003 — Intern Developer // Cape Ann Enterprises
 
@@ -84,6 +88,8 @@ Ordering is reverse-chronological by start date, so IPI Academy (Sep 2018) sorts
 
 ### LOG-004 — Information Technology // IPI Academy
 
+- `title`: `Information Technology // EDUCATION`
+- `company`: `IPI Academy`
 - `dateRange`: `SEP 2018 — MAR 2022`
 - `status`: `ARCHIVED`
 - `description`: "Studied the core pillars of object-oriented design, the practical implementation of fundamental data structures, and low-level operating system architecture — process management, memory allocation, and the hardware/software interface."
@@ -92,6 +98,8 @@ Ordering is reverse-chronological by start date, so IPI Academy (Sep 2018) sorts
   - `FOCUS` → `SYSTEMS ARCH`
   - `DISCIPLINE` → `CS FUNDAMENTALS`
   - `DURATION` → `3.5 YRS`
+
+> Superseded by 965c714 / 3317b6e / 10613ab (chip revisions) and the final-review fix wave.
 
 ## Provenance of every metric value
 
