@@ -46,8 +46,7 @@ export interface Project {
   status: ProjectStatus
   coordinates: string
   repoUrl: string
-  liveUrl: string
-  imageUrl?: string
+  liveUrl?: string
   chips: TechChip[]
 }
 

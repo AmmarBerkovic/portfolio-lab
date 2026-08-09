@@ -55,24 +55,6 @@
   background: linear-gradient(135deg, transparent 0%, rgba(47, 217, 244, 0.10) 100%);
 }
 
-.project-card__image {
-  border-bottom: 1px solid var(--color-border);
-  overflow: hidden;
-}
-
-.project-card__image img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  display: block;
-  filter: grayscale(20%);
-  transition: filter 0.3s;
-}
-
-.project-card:hover .project-card__image img {
-  filter: grayscale(0%);
-}
-
 .project-card__body {
   padding: 20px;
   padding-bottom: 16px;

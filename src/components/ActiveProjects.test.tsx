@@ -67,4 +67,14 @@ describe('ActiveProjects', () => {
     )
     expect(hrefs).toEqual(projects.map(p => p.repoUrl))
   })
+
+  test('renders LIVE_DEMO only for projects that have a live url', () => {
+    const { container } = render(<ActiveProjects />)
+    const liveLinks = Array.from(
+      container.querySelectorAll('.project-card__actions a'),
+    ).filter(a => a.textContent === 'LIVE_DEMO')
+    expect(liveLinks.map(a => a.getAttribute('href'))).toEqual(
+      projects.filter(p => p.liveUrl).map(p => p.liveUrl),
+    )
+  })
 })
