@@ -134,7 +134,7 @@ Unlike Core Stack, a chip **may** repeat across cards. Core Stack's one-chip-one
 
 These fabricated projects disappear entirely: Telemetry Core, Signal UI, Vault API, DataStream. With them go the last fabricated chips on the site — Kafka, ClickHouse, dbt, Python — and the eight placeholder links to `https://github.com` and `https://example.com`.
 
-After this change no invented content remains in `content.ts`.
+After this change `projects`, `roles`, and `domains` are all real. `hero` is the last remaining block of fabricated copy, deferred to a separate Command Center pass.
 
 ## Testing
 
