@@ -207,11 +207,39 @@ export const roles: Role[] = [
 export const projects: Project[] = [
   {
     id: 'PROJ-001',
+    name: 'Taggz',
+    description:
+      'Standalone tagging and filtering engine — JWT-guarded NestJS API over Prisma and Postgres, with content-addressed file storage isolated per business.',
+    status: 'active',
+    coordinates: '[X:04, Y:12]',
+    repoUrl: 'https://github.com/AmmarBerkovic/taggz',
+    chips: [
+      { label: 'NestJS',     color: 'cyan'   },
+      { label: 'PostgreSQL', color: 'cyan'   },
+      { label: 'Prisma',     color: 'violet' },
+    ],
+  },
+  {
+    id: 'PROJ-002',
+    name: 'Portfolio Lab',
+    description:
+      'This site — a React 19 single-page portfolio on Vite, with scroll-reveal sections and a retro terminal HUD built from plain colocated CSS.',
+    status: 'active',
+    coordinates: '[X:11, Y:07]',
+    repoUrl: 'https://github.com/AmmarBerkovic/portfolio-lab',
+    chips: [
+      { label: 'React',      color: 'cyan'   },
+      { label: 'TypeScript', color: 'cyan'   },
+      { label: 'Vite',       color: 'violet' },
+    ],
+  },
+  {
+    id: 'PROJ-003',
     name: 'The Movie App',
     description:
       'Browses the full TMDB catalogue through a Redux-backed store — filtering, search and trailer playback held in one predictable state tree.',
     status: 'active',
-    coordinates: '[X:04, Y:12]',
+    coordinates: '[X:08, Y:19]',
     repoUrl: 'https://github.com/AmmarBerkovic/The-Movie-App',
     chips: [
       { label: 'React',      color: 'cyan'   },
@@ -220,12 +248,12 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 'PROJ-002',
+    id: 'PROJ-004',
     name: 'Go User API',
     description:
       'RESTful user service on a layered Go architecture — Chi routing over GORM repositories, with paginated reads and Protobuf-generated models.',
     status: 'in-progress',
-    coordinates: '[X:11, Y:07]',
+    coordinates: '[X:15, Y:03]',
     repoUrl: 'https://github.com/AmmarBerkovic/Go-User-API',
     chips: [
       { label: 'Golang',   color: 'cyan'   },
@@ -234,12 +262,12 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 'PROJ-003',
+    id: 'PROJ-005',
     name: 'Mirror Client',
     description:
       'Server-rendered Angular workspace for continuous activity tracking — Material-driven records, filters and progress views over the Mirror API.',
     status: 'in-progress',
-    coordinates: '[X:08, Y:19]',
+    coordinates: '[X:02, Y:21]',
     repoUrl: 'https://github.com/AmmarBerkovic/MirrorFE',
     chips: [
       { label: 'Angular',    color: 'cyan'   },
@@ -248,12 +276,12 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 'PROJ-004',
+    id: 'PROJ-006',
     name: 'Mirror API',
     description:
       'Express and Mongoose service behind Mirror — CRUD endpoints over MongoDB collections with query-driven filtering across records.',
     status: 'in-progress',
-    coordinates: '[X:15, Y:03]',
+    coordinates: '[X:19, Y:09]',
     repoUrl: 'https://github.com/AmmarBerkovic/MirrorBE',
     chips: [
       { label: 'Node.js', color: 'cyan'   },

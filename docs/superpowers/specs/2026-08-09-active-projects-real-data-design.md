@@ -50,7 +50,7 @@ export interface Project {
 
 `coordinates` stays as-is. It is HUD decoration in the `[X:04, Y:12]` form with no real meaning, and every slot keeps its existing value regardless of which project lands there: `[X:04, Y:12]`, `[X:11, Y:07]`, `[X:08, Y:19]`, `[X:15, Y:03]`.
 
-**Four cards.** `.active-projects__grid` is `repeat(2, 1fr)` (`ActiveProjects.css:19-21`), so four cards fill the 2×2 desktop grid exactly. Three would leave a visible hole.
+**An even number of cards.** `.active-projects__grid` is `repeat(2, 1fr)` (`ActiveProjects.css:19-21`), so cards must come in pairs to fill each desktop row; an odd count leaves a visible hole. The section shipped with four and was amended to six — see Amendment below.
 
 ## Component change
 
@@ -75,9 +75,9 @@ This is the only component change in this cycle. Everything else is data.
 
 ## Roster
 
-Two cards are confirmed. Two await the user, who asked to see the first two written up as a calibration sample before supplying the rest.
+The four cards this section originally shipped with. The `PROJ-00N` labels below are the ids as first assigned; the Amendment renumbers them when two more cards join. Each project's content is unchanged by that renumbering.
 
-### PROJ-001 — The Movie App *(confirmed)*
+### PROJ-001 — The Movie App *(now PROJ-003)*
 
 - `description`: "Browses the full TMDB catalogue through a Redux-backed store — filtering, search and trailer playback held in one predictable state tree."
 - `status`: `'active'` — pushed 2026-01-25, the most recent repository on the account
@@ -86,7 +86,7 @@ Two cards are confirmed. Two await the user, who asked to see the first two writ
 - `chips`: React (cyan), TypeScript (cyan), Redux (violet)
 - Verified stack: React 18.3, Redux Toolkit 2.2, TypeScript 4.9, `react-router-dom` 6.23, axios, `react-youtube`, Sass. Source: repository `package.json`.
 
-### PROJ-002 — Go User API *(confirmed)*
+### PROJ-002 — Go User API *(now PROJ-004)*
 
 - `description`: "RESTful user service on a layered Go architecture — Chi routing over GORM repositories, with paginated reads and Protobuf-generated models."
 - `status`: `'in-progress'` — pushed 2025-03-24 and unfinished; not claimed as active
@@ -95,7 +95,7 @@ Two cards are confirmed. Two await the user, who asked to see the first two writ
 - `chips`: Golang (cyan), MySQL (cyan), Protobuf (violet)
 - Verified stack: Go with Chi routing, GORM, Viper config, MySQL, Protocol Buffers model generation, layered `config`/`db`/`internal` structure. Source: repository README.
 
-### PROJ-003 — Mirror Client *(confirmed)*
+### PROJ-003 — Mirror Client *(now PROJ-005)*
 
 - `description`: "Server-rendered Angular workspace for continuous activity tracking — Material-driven records, filters and progress views over the Mirror API."
 - `status`: `'in-progress'` — pushed 2024-03-03, parked
@@ -104,7 +104,7 @@ Two cards are confirmed. Two await the user, who asked to see the first two writ
 - `chips`: Angular (cyan), TypeScript (cyan), RxJS (violet)
 - Verified stack: Angular 17 with `@angular/ssr` and `platform-server`, Angular Material 17, Bootstrap 5.3, RxJS 7.8, TypeScript 5.2, Karma/Jasmine. Source: repository `package.json`.
 
-### PROJ-004 — Mirror API *(confirmed)*
+### PROJ-004 — Mirror API *(now PROJ-006)*
 
 - `description`: "Express and Mongoose service behind Mirror — CRUD endpoints over MongoDB collections with query-driven filtering across records."
 - `status`: `'in-progress'` — pushed 2024-03-10, parked
@@ -117,7 +117,7 @@ The display names deliberately differ from the repository names: `MirrorFE` and 
 
 Splitting Mirror across two cards was the user's choice over combining it into one full-stack card. It costs a slot that could have gone to `Boilerplate-Express`, and buys each half its own repo link plus a visible frontend/backend pairing.
 
-**Status distribution.** Only PROJ-001 carries a green `'active'` dot; the other three are amber `'in-progress'`. That is the honest reading — nothing but The Movie App has been touched in 2026 — and follows directly from the user's choice to label honestly rather than add an `'archived'` state.
+**Status distribution.** Of these four, only The Movie App carries a green `'active'` dot; the other three are amber `'in-progress'`. That is the honest reading — nothing else here has been touched in 2026 — and follows directly from the user's choice to label honestly rather than add an `'archived'` state. The Amendment's two additions are both genuinely active, bringing the section to an even split.
 
 ## Chip colour rules
 
@@ -172,5 +172,30 @@ No browser verification step. Card structure is unchanged apart from a button th
 
 - **`The-Movie-App` has a committed `.env` at its repository root, public.** Linking to that repository from a portfolio drives traffic to it. If the file holds a live TMDB key, the key should be rotated and the file scrubbed from history. Flagged to the user; not this branch's work, and not a blocker for merging.
 - **No card will have a live demo.** Neither confirmed project is deployed, and the survey found only one repository on the whole account with a homepage set (`PhoneBookPage`, 2019). A projects section where nothing is clickable beyond source code is weaker than one with demos — the honest fix is deploying something, which the user declined to scope here.
-- **Three of four cards show an amber `'in-progress'` dot.** Honest, but a projects grid that is mostly amber reads as a stalled portfolio. The alternative the user declined was an `'archived'` status; the other fix is pushing a commit to something.
+- **Most cards show an amber `'in-progress'` dot.** Honest, but a projects grid that is mostly amber reads as a stalled portfolio. The alternative the user declined was an `'archived'` status; the other fix is pushing a commit to something. The Amendment below improves this to a three/three split.
 - **Two cards describe the same product.** Mirror Client and Mirror API halve the apparent breadth of the section compared to featuring `Boilerplate-Express` in one of those slots. The user chose this knowingly.
+
+## Amendment — 2026-08-09: two cards added, six total
+
+After the four-card section was implemented and reviewed, the user added two more projects. The section now holds six cards across three desktop rows. Nothing about the data shape, the component, or the tests changed — the data-driven suite passed the 50% content change without edit, which is the property Tasks 1-2 were ordered to guarantee.
+
+**Order changed.** Cards are now grouped by status: the three `'active'` projects lead, the three `'in-progress'` ones follow, preserving relative order within each group. Leading with amber cards read as a stalled portfolio; leading with green does not. `id` values were renumbered `PROJ-001`..`PROJ-006` to match display order, and each slot keeps a distinct decorative `coordinates` value.
+
+### PROJ-001 — Taggz
+
+- `description`: "Standalone tagging and filtering engine — JWT-guarded NestJS API over Prisma and Postgres, with content-addressed file storage isolated per business."
+- `status`: `'active'` — pushed 2026-08-09, the same day it was added
+- `repoUrl`: `https://github.com/AmmarBerkovic/taggz`
+- `chips`: NestJS (cyan), PostgreSQL (cyan), Prisma (violet)
+- Verified stack: NestJS 11, Prisma 7 over Postgres, JWT via `@nestjs/jwt` and Passport with argon2 hashing, Swagger docs, Joi validation, Multer uploads, Jest with Testcontainers for integration tests. Per-business deployment isolation with no shared database or storage. Source: repository `package.json` and README.
+
+### PROJ-002 — Portfolio Lab
+
+- `description`: "This site — a React 19 single-page portfolio on Vite, with scroll-reveal sections and a retro terminal HUD built from plain colocated CSS."
+- `status`: `'active'` — the repository this spec lives in
+- `repoUrl`: `https://github.com/AmmarBerkovic/portfolio-lab`
+- `chips`: React (cyan), TypeScript (cyan), Vite (violet)
+
+**New chip labels.** NestJS takes cyan as a mainstream backend framework, matching `Spring Boot`. Prisma and Vite take violet as single-purpose tooling. Note that `Vite` appeared among the fabricated chips removed during the Core Stack cycle; here it is a real dependency of the repository the card links to.
+
+**This card required publishing the repository.** `portfolio-lab` had no git remote and returned 404 on GitHub, so linking to it would have shipped exactly the dead link the `liveUrl` work removed. The history was audited before publishing — `CV.pdf` and `.env` were never committed on any branch, and no address or phone number appears anywhere in history. The user chose to publish `docs/superpowers/` along with the application, accepting that the candid risk notes in these specs are publicly readable.
