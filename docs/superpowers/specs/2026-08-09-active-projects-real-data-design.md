@@ -1,7 +1,7 @@
 # Active Projects — Real Project Data
 
 **Date:** 2026-08-09
-**Status:** Approved (roster partially open — see Roster)
+**Status:** Approved
 **Scope:** Replace the placeholder `projects` data in `src/data/content.ts` with real repositories, make `liveUrl` optional so the `LIVE_DEMO` button only renders for deployed projects, drop the unused `imageUrl` field, and add a data-driven test suite for `ActiveProjects`.
 
 ## Background
@@ -95,27 +95,38 @@ Two cards are confirmed. Two await the user, who asked to see the first two writ
 - `chips`: Golang (cyan), MySQL (cyan), Protobuf (violet)
 - Verified stack: Go with Chi routing, GORM, Viper config, MySQL, Protocol Buffers model generation, layered `config`/`db`/`internal` structure. Source: repository README.
 
-### PROJ-003, PROJ-004 *(pending user input)*
+### PROJ-003 — Mirror Client *(confirmed)*
 
-The user is supplying these. Any card added must satisfy the rules already fixed by this spec:
+- `description`: "Server-rendered Angular workspace for continuous activity tracking — Material-driven records, filters and progress views over the Mirror API."
+- `status`: `'in-progress'` — pushed 2024-03-03, parked
+- `repoUrl`: `https://github.com/AmmarBerkovic/MirrorFE`
+- `liveUrl`: omitted — no deployment
+- `chips`: Angular (cyan), TypeScript (cyan), RxJS (violet)
+- Verified stack: Angular 17 with `@angular/ssr` and `platform-server`, Angular Material 17, Bootstrap 5.3, RxJS 7.8, TypeScript 5.2, Karma/Jasmine. Source: repository `package.json`.
 
-- `repoUrl` resolves to a real repository.
-- `liveUrl` present **only** if a deployment actually exists.
-- `status` labelled honestly per the rule above.
-- Three chips, coloured per the Chip colour rules below.
-- `description` one sentence, 100–150 characters, matching the band the confirmed two sit in.
-- `coordinates` keeps the existing value for that slot (`[X:08, Y:19]`, `[X:15, Y:03]`).
+### PROJ-004 — Mirror API *(confirmed)*
 
-Candidates already surveyed on the account, if the user picks from them rather than supplying new ones: `MirrorFE` + `MirrorBE` (2024, a management tool with a TypeScript frontend over an Express/MongoDB API — the only genuinely full-stack pair) and `Boilerplate-Express` (2023, a standardized Express API starter). The remaining fifteen repositories are 2019–2021 coursework in Java, C++, and PHP, or duplicate the MEAN work the Cape Ann role already covers.
+- `description`: "Express and Mongoose service behind Mirror — CRUD endpoints over MongoDB collections with query-driven filtering across records."
+- `status`: `'in-progress'` — pushed 2024-03-10, parked
+- `repoUrl`: `https://github.com/AmmarBerkovic/MirrorBE`
+- `liveUrl`: omitted — no deployment
+- `chips`: Node.js (cyan), Express (violet), MongoDB (amber)
+- Verified stack: Express 4.18, Mongoose 8.0, dotenv. Source: repository `package.json`.
+
+The display names deliberately differ from the repository names: `MirrorFE` and `MirrorBE` read as internal shorthand, and the card header renders `{name.toUpperCase().replace(/ /g, '_')}`, yielding the cleaner `MIRROR_CLIENT` and `MIRROR_API`. `repoUrl` makes the mapping unambiguous.
+
+Splitting Mirror across two cards was the user's choice over combining it into one full-stack card. It costs a slot that could have gone to `Boilerplate-Express`, and buys each half its own repo link plus a visible frontend/backend pairing.
+
+**Status distribution.** Only PROJ-001 carries a green `'active'` dot; the other three are amber `'in-progress'`. That is the honest reading — nothing but The Movie App has been touched in 2026 — and follows directly from the user's choice to label honestly rather than add an `'archived'` state.
 
 ## Chip colour rules
 
 Identical to the Core Stack cycle, in priority order:
 
-1. **Cross-section consistency wins.** Any technology already in `content.ts` keeps the colour it has, so nothing renders as two colours across sections. This fixes React, TypeScript, and Golang as cyan.
+1. **Cross-section consistency wins.** Any technology already in `content.ts` keeps the colour it has, so nothing renders as two colours across sections. This fixes React, TypeScript, Golang, Angular, and Node.js as cyan; Express as violet; MongoDB as amber.
 2. **New chips follow the file convention:** cyan = mainstream core technologies, languages, and relational datastores; amber = infrastructure and non-relational datastores; violet = specialty or single-purpose.
 
-New labels introduced here: **MySQL** takes cyan, matching `PostgreSQL`. **Redux** and **Protobuf** take violet as single-purpose libraries, matching `Stripe` and `Express`.
+New labels introduced here: **MySQL** takes cyan, matching `PostgreSQL`. **Redux**, **Protobuf**, and **RxJS** take violet as single-purpose libraries, matching `Stripe` and `Express`.
 
 Unlike Core Stack, a chip **may** repeat across cards. Core Stack's one-chip-one-card rule existed because its three cards partition a skill set; project cards describe independent artefacts that legitimately share technologies.
 
@@ -161,4 +172,5 @@ No browser verification step. Card structure is unchanged apart from a button th
 
 - **`The-Movie-App` has a committed `.env` at its repository root, public.** Linking to that repository from a portfolio drives traffic to it. If the file holds a live TMDB key, the key should be rotated and the file scrubbed from history. Flagged to the user; not this branch's work, and not a blocker for merging.
 - **No card will have a live demo.** Neither confirmed project is deployed, and the survey found only one repository on the whole account with a homepage set (`PhoneBookPage`, 2019). A projects section where nothing is clickable beyond source code is weaker than one with demos — the honest fix is deploying something, which the user declined to scope here.
-- **Two of four cards are unspecified at the time of writing.** The structural work (tests, component change, type change) is fully specified and independent of the roster; the content swap for PROJ-003 and PROJ-004 is blocked until the user supplies them. See the plan for how this is sequenced.
+- **Three of four cards show an amber `'in-progress'` dot.** Honest, but a projects grid that is mostly amber reads as a stalled portfolio. The alternative the user declined was an `'archived'` status; the other fix is pushing a commit to something.
+- **Two cards describe the same product.** Mirror Client and Mirror API halve the apparent breadth of the section compared to featuring `Boilerplate-Express` in one of those slots. The user chose this knowingly.
