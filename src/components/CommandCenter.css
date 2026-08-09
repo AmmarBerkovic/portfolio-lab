@@ -426,14 +426,39 @@
 
 /* CV download */
 .command-center__cv {
+  position: relative;
+  overflow: hidden;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 12px;
-  border: 1px solid rgba(34, 211, 238, 0.2);
+  padding: 8px 12px;
+  border: 1px solid rgba(34, 211, 238, 0.45);
   background: rgba(34, 211, 238, 0.05);
   text-decoration: none;
   transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Slow cyan sweep — marks the one control in a footer of passive readouts */
+.command-center__cv::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 40%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(34, 211, 238, 0.18),
+    transparent
+  );
+  animation: cv-sweep 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes cv-sweep {
+  0%        { transform: translateX(-120%); }
+  55%, 100% { transform: translateX(320%); }
 }
 
 .command-center__cv:hover {
@@ -456,7 +481,7 @@
 .command-center__cv-label {
   font-family: var(--font-mono);
   font-size: 9px;
-  color: rgba(218, 226, 253, 0.6);
+  color: var(--color-text);
   transition: color 0.3s ease;
 }
 
@@ -468,7 +493,14 @@
 .command-center__cv-size {
   font-family: var(--font-mono);
   font-size: 8px;
-  color: rgba(34, 211, 238, 0.4);
+  color: rgba(34, 211, 238, 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .command-center__cv::after {
+    animation: none;
+    opacity: 0;
+  }
 }
 
 /* Scroll hint */

@@ -118,4 +118,24 @@ No browser verification step, per the user's standing preference against routine
 - **Committing the PDF is irreversible.** `portfolio-lab` is a public GitHub repository as of the Active Projects cycle. Once `public/CV.pdf` is pushed, the file is publicly readable and permanently present in git history; deleting it later removes it from the working tree but not from history, and not from any clone or fork. The user was shown this and chose it over a redacted copy, an external host, and Vercel Blob.
 - **The PDF's contents were not verified before this spec was written.** It uses a subset font with a custom glyph encoding, and no PDF tooling is installed in this environment (`pdftoppm` absent; raw stream extraction returns unmapped glyph codes). Whatever personal detail the original `# contains PII` comment was guarding — home address, phone number — is unconfirmed. The user should read the file before the commit lands; it is the last cheap moment to swap in a redacted version.
 - **A public download button publishes the CV's contents regardless of hosting.** Committing is not what makes the CV public — the button is. What committing additionally costs is revocability: an externally hosted file can be swapped or withdrawn at any time, a committed one cannot.
-- **The `size` value can drift.** Replacing `public/CV.pdf` without editing `hero.cv.size` leaves a wrong number on the page. Mitigated only by the trailing comment; nothing enforces it.
+- **The `size` value can drift.** Replacing `public/CV.pdf` without editing `hero.cv.size` leaves a wrong number on the page. Mitigated only by the trailing comment; nothing enforces it. Accepted by the user when raised after implementation.
+
+## Amendment — 2026-08-09: made findable
+
+Once shipped, the button proved easy to miss. The cause was not size or dimness in isolation: the label rendered at 9px / 60% opacity directly beneath `BIOS_INTEGRITY` at 9px / 55%, making the site's one interactive control typographically indistinguishable from the telemetry above it. The HUD aesthetic works by rendering everything as passive readout, so a control placed inside that stack is camouflaged by the design working correctly. Blending in more carefully cannot fix this — the button has to break the pattern.
+
+Five treatments were mocked up and reviewed as a live comparison page. The user chose the first three, applied together.
+
+**1. Copy.** `EXPORT_MANIFEST.PDF` → `EXPORT_CV.PDF`. "Manifest" does not read as "résumé" to anyone not already in on the theme; `CV` is the term a recruiter scans for, and the `EXPORT_` prefix keeps the terminal register. Data-only change. The test did not need editing — it derives from `hero.cv.label` — which is the property the data-driven convention exists to provide.
+
+**2. Contrast.** Label and icon from `rgba(218, 226, 253, 0.6)` to `var(--color-text)`; border from 20% to 45% cyan; size hint from 40% to 55% cyan; vertical padding 6px → 8px. The button becomes the only full-contrast element in a footer of dim readouts.
+
+**3. Motion.** A `::after` pseudo-element sweeps a low-opacity cyan gradient across the button every 5s (`cv-sweep`), requiring `position: relative` and `overflow: hidden` on the anchor. This is the element that makes the button *catch* the eye rather than merely being legible once found — peripheral vision registers motion in an otherwise still region. It reads as in-world because the frame already animates: the photo carries a scan line and the integrity bar pulses.
+
+Rejected: promoting the link into the left-column CTA row beside `VIEW_ARCHIVE` and `OPEN_UPLINK`. It addresses the cause rather than compensating for it and would almost certainly outperform all three changes above, but it abandons the Stitch placement and a third button dilutes the primary CTA. Recorded here because it remains the strongest option if the CV ever needs to be the hero's main call to action.
+
+### Reduced motion
+
+`.command-center__cv::after` is disabled under `@media (prefers-reduced-motion: reduce)`, degrading to treatment 2 — still the highest-contrast element in the footer, just static.
+
+**This is the only `prefers-reduced-motion` guard in the codebase.** The badge ping, the photo scan line, the integrity `bar-pulse`, and the entry transitions all animate unconditionally. Guarding only the new animation while leaving the pre-existing ones untouched is inconsistent; a site-wide pass belongs in its own change and was deliberately not bundled here.

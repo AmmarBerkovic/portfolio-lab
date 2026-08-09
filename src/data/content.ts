@@ -76,7 +76,7 @@ export const hero = {
   primaryCta:   { label: 'VIEW_ARCHIVE', href: '#active-projects' },
   secondaryCta: { label: 'OPEN_UPLINK',  href: '#contact-uplink' },
   cv: {
-    label:    'EXPORT_MANIFEST.PDF',
+    label:    'EXPORT_CV.PDF',
     href:     '/CV.pdf',
     fileName: 'Ammar-Berkovic-CV.pdf', // what the browser saves it as
     size:     '[158KB]',               // update when replacing public/CV.pdf
