@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import heroImg from '../assets/hero.png'
+import heroImg from '../assets/hero.webp'
 import { useIntersection } from '../hooks/useIntersection'
 import { hero } from '../data/content'
 import './CommandCenter.css'
@@ -101,10 +101,17 @@ export default function CommandCenter() {
 
             {/* Image */}
             <div className="command-center__frame-image">
+              {/* Intrinsic size is declared so the frame reserves the right
+                  height before the image lands — without it the panel grows
+                  from its 260px min-height on first paint and shifts layout. */}
               <img
                 src={heroImg}
                 alt="Ammar Berkovic"
                 className="command-center__photo"
+                width={640}
+                height={787}
+                fetchPriority="high"
+                decoding="async"
               />
               <div className="command-center__scanlines" />
               <div className="command-center__scan-line" />
@@ -115,20 +122,23 @@ export default function CommandCenter() {
 
             {/* Footer */}
             <div className="command-center__frame-footer">
+              {/* Readouts stay in the HUD register but carry real details —
+                  invented figures here teach a reader to discount the real
+                  metrics in the experience logs. */}
               <div className="command-center__frame-footer-row">
-                <span>BIOS_INTEGRITY</span>
-                <span className="command-center__frame-value">99.8%</span>
+                <span>SPECIALISM</span>
+                <span className="command-center__frame-value">PUBLISHING / SEO</span>
               </div>
               <div className="command-center__frame-bar">
                 <div className="command-center__frame-bar-fill" />
               </div>
               <div className="command-center__frame-data">
-                <span>LOC: 45.8150° N</span>
-                <span>ALT: 122M</span>
+                <span>LOC: TUZLA, BA</span>
+                <span>UTC+01:00</span>
               </div>
               <div className="command-center__frame-data">
-                <span>TMP: 36.6°C</span>
-                <span>HRT: 62BPM</span>
+                <span>REMOTE: WORLDWIDE</span>
+                <span>EN / DE</span>
               </div>
 
               <a
