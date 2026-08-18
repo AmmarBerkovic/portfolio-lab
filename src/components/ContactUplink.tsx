@@ -59,7 +59,7 @@ export default function ContactUplink() {
           <aside className="contact-sidebar" aria-label="Direct channels">
             <p className="section-label">// OPEN_CHANNEL</p>
             <h2 className="section-heading">Contact Uplink</h2>
-            <p className="contact-uplink__intro">Available for select engagements and technical collaborations. Transmit your message through the form or connect via a direct channel.</p>
+            <p className="contact-uplink__intro">Available for full-time remote roles, any timezone. Transmit your message through the form or connect via a direct channel.</p>
             <p className="contact-sidebar__heading">// DIRECT_CHANNELS</p>
             <a href={contact.github} target="_blank" rel="noreferrer" className="contact-link">
               <span className="contact-link__prefix">$</span> open github.com/ammar

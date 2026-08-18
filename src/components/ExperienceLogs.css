@@ -362,9 +362,11 @@
 }
 
 .experience-logs__metric-label {
-  font-size: 7px;
+  font-size: 9px;
   letter-spacing: 2px;
-  color: rgba(51, 65, 85, 0.7);
+  /* Slate at 7px/rgba(51,65,85,.7) was around 1.4:1 against the panel, well
+     under the 4.5:1 minimum — the label naming each figure was unreadable. */
+  color: rgba(148, 163, 184, 0.75);
   text-transform: uppercase;
 }
 
