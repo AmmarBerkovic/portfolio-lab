@@ -79,7 +79,7 @@ export const hero = {
     label:    'EXPORT_CV.PDF',
     href:     '/CV.pdf',
     fileName: 'Ammar-Berkovic-CV.pdf', // what the browser saves it as
-    size:     '[158KB]',               // update when replacing public/CV.pdf
+    size:     '[233KB]',               // update when replacing public/CV.pdf
   },
 }
 
