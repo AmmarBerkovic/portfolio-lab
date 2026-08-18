@@ -38,3 +38,6 @@ dist-ssr
 
 # Claude Code tooling
 .superpowers/
+
+# Claude Code tooling
+docs/superpowers/

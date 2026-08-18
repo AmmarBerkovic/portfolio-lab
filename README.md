@@ -48,7 +48,3 @@ Everything else runs without configuration.
 **Styling is colocated plain CSS.** `ComponentName.css` sits next to `ComponentName.tsx`. Design tokens — colors, fonts, spacing — are CSS custom properties defined on `:root` in `src/index.css`. Shared layout lives in `App.css`.
 
 **Tests are data-driven.** Section suites derive their expectations from the imported data rather than from literal copy, so editing content cannot break them. Because every section uses `useIntersection`, tests stub `IntersectionObserver` globally in `beforeEach`.
-
-## Design and planning docs
-
-`docs/superpowers/` holds the specs and implementation plans this site was built from — one design document and one plan per feature, written before the code. They're kept in the repo as a record of the reasoning, including the trade-offs that were considered and rejected.
