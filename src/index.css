@@ -210,3 +210,28 @@ textarea:focus-visible {
     padding: 60px 20px;
   }
 }
+
+/* Reduced motion.
+   Content must never depend on an animation to become visible, so the
+   scroll-reveal resolves straight to its finished state rather than being
+   skipped — otherwise every section stays at opacity 0. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-entry,
+  .animate-entry.visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
