@@ -297,6 +297,6 @@ export const projects: Project[] = [
 
 export const contact: ContactInfo = {
   github:   'https://github.com/AmmarBerkovic',
-  linkedin: 'https://www.linkedin.com/in/ammar-berkovic-8b6422247/',
+  linkedin: 'https://www.linkedin.com/in/ammar-berkovic/',
   email:    'berkovicammar1@gmail.com',
 }
