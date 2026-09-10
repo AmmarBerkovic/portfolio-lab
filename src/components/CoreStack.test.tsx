@@ -48,6 +48,15 @@ describe('CoreStack', () => {
     expect(chipsPerCard).toEqual(domains.map(d => d.chips.map(chip => chip.label)))
   })
 
+  test('cards power on with the boot reveal rather than the shared fade', () => {
+    const { container } = render(<CoreStack />)
+    cards(container).forEach(el => {
+      expect(el.className).toContain('animate-boot')
+      expect(el.className).not.toContain('animate-entry')
+      expect(el.className).not.toContain('visible')
+    })
+  })
+
   test('chips carry their position so the hover cascade can stagger them', () => {
     const { container } = render(<CoreStack />)
     const indices = cards(container).map(c =>

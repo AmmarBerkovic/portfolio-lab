@@ -211,13 +211,30 @@ html { scrollbar-width: thin; scrollbar-color: #94a3b8 var(--color-bg); }
   box-shadow: 0 0 16px rgba(34, 211, 238, 0.4);
 }
 
-/* Entry animation base */
+/* Entry animation base. Still used by anything that is not a card — the hero's
+   status row and button row, and the contact layout — where a power-on would
+   read as a glitch rather than a readout coming up. */
 .animate-entry {
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 .animate-entry.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Card boot reveal — a CRT power-on from a line across the card's centre.
+   The cleaner version of this is a clip-path wipe, which would leave the text
+   unsquashed on the way open. It is not available: clip-path already draws the
+   notched top-right corner on the cards, so this scales instead. */
+.animate-boot {
+  opacity: 0;
+  transform: scaleY(0.04);
+  transform-origin: center;
+  transition: opacity 0.26s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.animate-boot.visible {
   opacity: 1;
   transform: none;
 }
@@ -252,7 +269,9 @@ textarea:focus-visible {
   }
 
   .animate-entry,
-  .animate-entry.visible {
+  .animate-entry.visible,
+  .animate-boot,
+  .animate-boot.visible {
     opacity: 1;
     transform: none;
     transition: none;

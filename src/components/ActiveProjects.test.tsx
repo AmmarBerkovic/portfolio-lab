@@ -68,6 +68,15 @@ describe('ActiveProjects', () => {
     expect(hrefs).toEqual(projects.map(p => p.repoUrl))
   })
 
+  test('cards power on with the boot reveal rather than the shared fade', () => {
+    const { container } = render(<ActiveProjects />)
+    cards(container).forEach(el => {
+      expect(el.className).toContain('animate-boot')
+      expect(el.className).not.toContain('animate-entry')
+      expect(el.className).not.toContain('visible')
+    })
+  })
+
   test('chips carry their position so the hover cascade can stagger them', () => {
     const { container } = render(<ActiveProjects />)
     const indices = cards(container).map(c =>

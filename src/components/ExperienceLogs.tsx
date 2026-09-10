@@ -34,7 +34,7 @@ export default function ExperienceLogs() {
           {roles.map((role, i) => (
             <article
               key={`${role.company}-${role.dateRange}`}
-              className={`entry entry--${role.status.toLowerCase()}${i === 0 ? ' entry--latest' : ''} animate-entry${isVisible ? ' visible' : ''}`}
+              className={`entry entry--${role.status.toLowerCase()}${i === 0 ? ' entry--latest' : ''} animate-boot${isVisible ? ' visible' : ''}`}
               style={{ transitionDelay: `${i * 0.1}s` }}
             >
               <div className="entry__rail">

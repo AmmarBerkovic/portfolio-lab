@@ -19,7 +19,7 @@ export default function CoreStack() {
           {domains.map((domain, i) => (
             <div
               key={domain.id}
-              className={`domain-card animate-entry${isVisible ? ' visible' : ''}`}
+              className={`domain-card animate-boot${isVisible ? ' visible' : ''}`}
               style={{ transitionDelay: `${i * 0.12}s` }}
             >
               <div className="card-header">

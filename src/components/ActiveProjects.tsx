@@ -24,7 +24,7 @@ export default function ActiveProjects() {
           {projects.map((project, i) => (
             <div
               key={project.id}
-              className={`project-card animate-entry${isVisible ? ' visible' : ''}`}
+              className={`project-card animate-boot${isVisible ? ' visible' : ''}`}
               style={{ transitionDelay: `${i * 0.1}s` }}
             >
               <div className="card-header">

@@ -133,13 +133,14 @@ describe('ExperienceLogs', () => {
     ).toBeNull()
   })
 
-  test('entries use the shared scroll-reveal pattern', () => {
+  test('entries power on with the boot reveal rather than the shared fade', () => {
     const { container } = render(<ExperienceLogs />)
     const entries = container.querySelectorAll('.entry')
 
     expect(entries).toHaveLength(roles.length)
     entries.forEach(el => {
-      expect(el.className).toContain('animate-entry')
+      expect(el.className).toContain('animate-boot')
+      expect(el.className).not.toContain('animate-entry')
       expect(el.className).not.toContain('visible')
     })
   })
