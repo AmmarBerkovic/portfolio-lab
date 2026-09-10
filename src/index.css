@@ -170,6 +170,7 @@ html { scrollbar-width: thin; scrollbar-color: #94a3b8 var(--color-bg); }
 
 /* Shared ghost button */
 .btn-ghost {
+  position: relative;
   font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 500;
@@ -189,6 +190,34 @@ html { scrollbar-width: thin; scrollbar-color: #94a3b8 var(--color-bg); }
   border-color: var(--color-border-hover);
   box-shadow: 0 0 8px rgba(34, 211, 238, 0.2);
 }
+
+/* Hovering brackets the label — [ VIEW_REPO ] — the selection convention of
+   the interface the site imitates. The brackets are drawn inside the padding
+   the button already has, so nothing reflows and the button never resizes.
+   They are drawn with borders rather than as literal '[' and ']' characters:
+   pseudo-element `content` text counts toward the accessible name, so the
+   character version made every link announce itself as "[ VIEW_REPO ]".
+   Borders carry no text, and match the corner brackets used elsewhere. */
+.btn-ghost::before,
+.btn-ghost::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 15px;
+  border: 1px solid var(--color-cyan);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, left 0.2s ease, right 0.2s ease;
+}
+.btn-ghost::before { border-right: none; left: 14px; }
+.btn-ghost::after  { border-left: none;  right: 14px; }
+
+.btn-ghost:hover::before,
+.btn-ghost:focus-visible::before { opacity: 1; left: 7px; }
+.btn-ghost:hover::after,
+.btn-ghost:focus-visible::after  { opacity: 1; right: 7px; }
 
 /* Shared primary button */
 .btn-primary {

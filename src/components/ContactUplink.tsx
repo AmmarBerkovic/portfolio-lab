@@ -16,7 +16,7 @@ const BTN_LABEL: Record<SendStatus, string> = {
 
 const BTN_CLASS: Record<SendStatus, string> = {
   idle:    '',
-  sending: '',
+  sending: 'submit-btn--sending',
   success: 'submit-btn--success',
   error:   'submit-btn--error',
 }
