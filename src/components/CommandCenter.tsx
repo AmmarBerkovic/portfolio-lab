@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import heroImg from '../assets/hero.webp'
 import { useIntersection } from '../hooks/useIntersection'
+import { useParallax } from '../hooks/useParallax'
 import { hero } from '../data/content'
 import './CommandCenter.css'
 
@@ -27,9 +28,18 @@ function useUtcClock() {
 export default function CommandCenter() {
   const [ref, isVisible] = useIntersection<HTMLDivElement>(0.2)
   const utcTime = useUtcClock()
+  // The grid sits furthest back and drifts most; the rings are nearer the
+  // viewer and drift at half the rate, which is what separates the two planes.
+  const gridRef = useParallax<HTMLDivElement>(0.6)
+  const ringsRef = useParallax<HTMLDivElement>(0.3)
 
   return (
     <section id="command-center" className="command-center">
+      {/* A real element rather than ::after, so the drift has something to
+          transform. Inset past the section top and bottom in CSS so sliding it
+          never exposes an edge. */}
+      <div className="command-center__grid" ref={gridRef} aria-hidden="true" />
+
       <div className="section-inner command-center__inner" ref={ref}>
 
         {/* ── Left column ── */}
@@ -80,8 +90,12 @@ export default function CommandCenter() {
 
         {/* ── Right column ── */}
         <div className="command-center__right">
-          <div className="command-center__ring command-center__ring--outer" />
-          <div className="command-center__ring command-center__ring--inner" />
+          {/* The rings rotate, so the drift goes on a wrapper — a transform on
+              the rings themselves would overwrite their rotation. */}
+          <div className="command-center__ring-layer" ref={ringsRef} aria-hidden="true">
+            <div className="command-center__ring command-center__ring--outer" />
+            <div className="command-center__ring command-center__ring--inner" />
+          </div>
 
           <div className="command-center__frame">
             {/* Corner brackets */}

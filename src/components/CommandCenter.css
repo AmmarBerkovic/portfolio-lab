@@ -9,17 +9,26 @@
   overflow: hidden;
 }
 
-/* Technical grid overlay */
-.command-center::after {
-  content: '';
+/* Technical grid overlay. A real element rather than ::after so the parallax
+   has something to transform, and inset well past the section top and bottom
+   so drifting it never pulls an edge into view. The section clips it.
+
+   It moves by transform, not background-position: a repeating gradient
+   repainted on every scroll frame is work for the main thread, while a
+   translated layer is handed to the compositor. */
+.command-center__grid {
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
+  top: -260px;
+  bottom: -260px;
   background-image:
     linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px),
     linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
   background-size: 32px 32px;
   pointer-events: none;
   z-index: 0;
+  will-change: transform;
 }
 
 .command-center__inner {
@@ -199,7 +208,18 @@
   align-items: center;
 }
 
-/* Concentric rings */
+/* Concentric rings. The layer carries the parallax drift; the rings inside
+   carry their own rotation, which a transform on them would overwrite. */
+.command-center__ring-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  will-change: transform;
+}
+
 .command-center__ring {
   position: absolute;
   border-radius: 50%;
