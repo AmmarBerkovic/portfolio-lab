@@ -225,15 +225,41 @@
   background: var(--color-cyan);
 }
 
+/* Counter-rotates against the outer ring, slower, so the pair reads as a
+   gyroscope rather than one spinning hoop.
+   A circle is rotationally symmetric — turning a plain ring is invisible no
+   matter how bright it is. The outer ring only reads as moving because it
+   carries a marker, so this one needs its own, in violet to distinguish the
+   two paths. The border is lifted from 0.05 alpha for the same reason: at that
+   value the ring the marker travels around could not be seen at all. */
 .command-center__ring--inner {
   width: 370px;
   height: 370px;
-  border: 1px solid rgba(47, 217, 244, 0.05);
+  border: 1px solid rgba(47, 217, 244, 0.12);
+  animation: ring-rotate-reverse 30s linear infinite;
+}
+
+.command-center__ring--inner::before {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-violet);
+  box-shadow: 0 0 6px var(--color-violet);
 }
 
 @keyframes ring-rotate {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
+}
+
+@keyframes ring-rotate-reverse {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
 }
 
 /* HUD frame */
