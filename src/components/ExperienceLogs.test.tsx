@@ -1,86 +1,145 @@
 import { describe, test, expect, vi, beforeEach } from 'vitest'
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { render, screen, act } from '@testing-library/react'
 import ExperienceLogs from './ExperienceLogs'
 import { roles } from '../data/content'
 
+/** Captures the observer callback so a test can drive the reveal itself. */
+let triggerIntersection: (() => void) | null = null
+
 beforeEach(() => {
+  triggerIntersection = null
   vi.stubGlobal(
     'IntersectionObserver',
-    vi.fn(function () {
+    vi.fn(function (cb: IntersectionObserverCallback) {
+      triggerIntersection = () =>
+        cb(
+          [{ isIntersecting: true } as IntersectionObserverEntry],
+          {} as IntersectionObserver,
+        )
       return { observe: vi.fn(), disconnect: vi.fn() }
     }),
   )
 })
 
-function metricValues(container: HTMLElement): (string | null)[] {
-  return Array.from(
-    container.querySelectorAll('.experience-logs__metric-value'),
-  ).map(el => el.textContent)
+function textOf(container: HTMLElement, selector: string): string[] {
+  return Array.from(container.querySelectorAll(selector)).map(
+    el => el.textContent?.trim() ?? '',
+  )
 }
 
 describe('ExperienceLogs', () => {
-  test('renders section audit label', () => {
+  test('renders the section audit label', () => {
     render(<ExperienceLogs />)
     expect(screen.getByText(/SYSTEM_AUDIT_LOG/)).toBeInTheDocument()
   })
 
-  test('renders one left-panel entry per role, in order', () => {
+  test('renders a level-2 heading naming the section', () => {
     render(<ExperienceLogs />)
-    const buttons = screen.getAllByRole('button')
-    expect(buttons).toHaveLength(roles.length)
-
-    const titles = buttons.map(b => b.querySelector('.role-entry__title')?.textContent)
-    expect(titles).toEqual(roles.map(r => r.title))
-  })
-
-  test('first role is active by default — its title appears in the detail panel', () => {
-    render(<ExperienceLogs />)
-    expect(screen.getAllByText(roles[0].title).length).toBeGreaterThanOrEqual(2)
-  })
-
-  test('clicking a role entry changes the active detail content', async () => {
-    const user = userEvent.setup()
-    render(<ExperienceLogs />)
-
-    const last = roles[roles.length - 1]
-    const buttons = screen.getAllByRole('button')
-    await user.click(buttons[buttons.length - 1])
-
     expect(
-      await screen.findByText(`// ${last.company}`, {
-        selector: '.experience-logs__role-company',
-      }),
+      screen.getByRole('heading', { level: 2, name: /Experience Logs/i }),
     ).toBeInTheDocument()
   })
 
-  test('metrics for the active role are displayed, in order', () => {
-    const { container } = render(<ExperienceLogs />)
-    expect(metricValues(container)).toEqual(roles[0].metrics.map(m => m.value))
+  test('states the total number of entries', () => {
+    render(<ExperienceLogs />)
+    expect(screen.getByText(`[0${roles.length}] TOTAL_ENTRIES`)).toBeInTheDocument()
   })
 
-  test('renders the active role chips, in order, with their colour class', () => {
+  test('renders one entry per role, in order', () => {
     const { container } = render(<ExperienceLogs />)
-    const chips = Array.from(
-      container.querySelectorAll('.experience-logs__chips .chip'),
+    expect(textOf(container, '.entry__title')).toEqual(roles.map(r => r.title))
+  })
+
+  test('renders every role description, not only the first', () => {
+    const { container } = render(<ExperienceLogs />)
+    expect(textOf(container, '.entry__desc')).toEqual(
+      roles.map(r => r.description),
     )
+  })
+
+  test('renders every role company, in order', () => {
+    const { container } = render(<ExperienceLogs />)
+    expect(textOf(container, '.entry__company')).toEqual(
+      roles.map(r => `// ${r.company}`),
+    )
+  })
+
+  test('renders every chip of every role, with its colour class', () => {
+    const { container } = render(<ExperienceLogs />)
+    const chips = Array.from(container.querySelectorAll('.entry__chips .chip'))
 
     expect(chips.map(el => el.textContent)).toEqual(
-      roles[0].chips.map(chip => chip.label),
+      roles.flatMap(r => r.chips.map(c => c.label)),
     )
     expect(chips.map(el => el.className)).toEqual(
-      roles[0].chips.map(chip => `chip chip--${chip.color}`),
+      roles.flatMap(r => r.chips.map(c => `chip chip--${c.color}`)),
     )
   })
 
-  test('clicking same role twice does not break state', async () => {
-    const user = userEvent.setup()
+  test('renders the metrics of every role that has them', () => {
     const { container } = render(<ExperienceLogs />)
+    expect(textOf(container, '.metric__value')).toEqual(
+      roles.flatMap(r => r.metrics?.map(m => m.value) ?? []),
+    )
+  })
 
-    const first = screen.getAllByRole('button')[0]
-    await user.click(first)
-    await user.click(first)
+  test('renders every role status as a readable badge', () => {
+    const { container } = render(<ExperienceLogs />)
+    expect(textOf(container, '.entry__status')).toEqual(roles.map(r => r.status))
+  })
 
-    expect(metricValues(container)).toEqual(roles[0].metrics.map(m => m.value))
+  test('has no click-to-switch controls — every record is already open', () => {
+    render(<ExperienceLogs />)
+    expect(screen.queryAllByRole('button')).toHaveLength(0)
+  })
+
+  test('the most recent record is highlighted as the latest entry', () => {
+    const { container } = render(<ExperienceLogs />)
+    const latest = container.querySelectorAll('.entry--latest')
+
+    expect(latest).toHaveLength(1)
+    expect(latest[0]).toBe(container.querySelector('.entry'))
+  })
+
+  test('HUD corner brackets mark only a role that is currently active', () => {
+    const { container } = render(<ExperienceLogs />)
+    const activeCount = roles.filter(r => r.status === 'ACTIVE').length
+
+    // Two brackets per live record — none at all once every role has ended.
+    expect(container.querySelectorAll('.entry__corner')).toHaveLength(
+      activeCount * 2,
+    )
+  })
+
+  test('the education entry carries its own modifier class', () => {
+    const { container } = render(<ExperienceLogs />)
+    expect(container.querySelectorAll('.entry--education')).toHaveLength(1)
+  })
+
+  test('the education entry renders no metrics strip', () => {
+    const { container } = render(<ExperienceLogs />)
+    expect(
+      container.querySelector('.entry--education .entry__metrics'),
+    ).toBeNull()
+  })
+
+  test('entries use the shared scroll-reveal pattern', () => {
+    const { container } = render(<ExperienceLogs />)
+    const entries = container.querySelectorAll('.entry')
+
+    expect(entries).toHaveLength(roles.length)
+    entries.forEach(el => {
+      expect(el.className).toContain('animate-entry')
+      expect(el.className).not.toContain('visible')
+    })
+  })
+
+  test('entries become visible once the section is scrolled into view', () => {
+    const { container } = render(<ExperienceLogs />)
+    act(() => triggerIntersection?.())
+
+    container.querySelectorAll('.entry').forEach(el => {
+      expect(el.className).toContain('visible')
+    })
   })
 })

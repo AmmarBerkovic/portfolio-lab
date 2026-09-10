@@ -34,9 +34,10 @@ export interface Role {
   title: string
   company: string
   description: string
-  status: 'ACTIVE' | 'ARCHIVED'
+  status: 'ACTIVE' | 'ARCHIVED' | 'EDUCATION'
   chips: TechChip[]
-  metrics: RoleMetric[]
+  /** Omitted for education, which renders compressed — no metrics strip. */
+  metrics?: RoleMetric[]
 }
 
 export interface Project {
@@ -67,7 +68,7 @@ export const navLinks: NavLink[] = [
 export const hero = {
   name: 'AMMAR_BERKOVIC',
   title: 'FULL STACK ENGINEER // PUBLISHING_&_PERFORMANCE',
-  bio: "Full stack engineer, five years on high-traffic publishing sites where organic search is the business. At Glide Tech I owned client publishers' live websites — React and Next.js front ends, Node and AWS behind them. Now backend in Go and MySQL, on a platform serving 836,000 registered users.",
+  bio: "Full stack engineer, five years on high-traffic publishing sites where organic search is the business. At Glide Tech I owned client publishers' live websites — React and Next.js front ends, Node and AWS behind them. Most recently backend in Go and MySQL, on a platform serving 836,000 registered users.",
   statusIndicators: [
     { label: 'AVAILABLE_FOR_HIRE', color: 'cyan' },
     { label: 'REMOTE_WORLDWIDE',   color: 'green' },
@@ -126,12 +127,12 @@ export const domains: Domain[] = [
 
 export const roles: Role[] = [
   {
-    dateRange: 'APR 2025 — PRESENT',
+    dateRange: 'APR 2025 — SEP 2026',
     title: 'Backend Developer',
     company: 'Pickleball Inc',
     description:
       "Rebuilt the messaging platform — multi-tenant infrastructure behind every email, SMS and push the product sends: 150,000 emails and 250,000 SMS a month, worldwide, with delivery behind a provider-agnostic adapter and customer-supplied provider accounts. Shut down an SMS pumping attack — fraudsters farming termination fees on high-cost destinations — with an allowed-destinations list, registration rate limiting and IP-to-phone geolocation matching. Designed the Affiliations Rules Engine, the product's first model of how organizations relate to one another, and wired the billing paths so a club joining or leaving a hierarchy never interrupts its members' payments.",
-    status: 'ACTIVE',
+    status: 'ARCHIVED',
     chips: [
       { label: 'Golang',  color: 'cyan'   },
       { label: 'MySQL',   color: 'cyan'   },
@@ -190,19 +191,15 @@ export const roles: Role[] = [
   },
   {
     dateRange: 'SEP 2018 — MAR 2022',
-    title: 'Information Technology // EDUCATION',
+    // The status badge now says EDUCATION, so the title no longer has to.
+    title: 'Information Technology',
     company: 'IPI Academy',
     description:
       "Bachelor's degree in Information Technology, completed while working full time — the Cape Ann placement ran inside the degree, and its final year overlapped my first months at Glide.",
-    status: 'ARCHIVED',
+    status: 'EDUCATION',
     chips: [
       { label: "Bachelor's Degree",      color: 'violet' },
       { label: 'Information Technology', color: 'cyan'   },
-    ],
-    metrics: [
-      { label: 'DEGREE',   value: 'BSc COMPLETED' },
-      { label: 'OVERLAP',  value: 'WORKED FULL TIME' },
-      { label: 'DURATION', value: '3.5 YRS' },
     ],
   },
 ]
