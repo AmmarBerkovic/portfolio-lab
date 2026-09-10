@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { navLinks } from '../data/content'
+import { useScrollProgress } from '../hooks/useScrollProgress'
 import './Nav.css'
 
 const SECTION_IDS = navLinks.map(({ href }) => href.slice(1))
@@ -8,6 +9,8 @@ export default function Nav() {
   const [activeId, setActiveId] = useState('command-center')
   const [menuOpen, setMenuOpen] = useState(false)
   const [utcTime, setUtcTime] = useState(() => new Date().toUTCString().slice(17, 25))
+  const progress = useScrollProgress()
+  const scanned = String(Math.round(progress * 100)).padStart(3, '0')
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -61,10 +64,19 @@ export default function Nav() {
           ))}
         </ul>
 
+        {/* The scan readout replaces the old STATUS: NOMINAL badge — same slot,
+            same register, but it reports something actually true of the page
+            rather than asserting a health state nothing measures. */}
         <div className="nav__status">
-          <span className="nav__status-badge">STATUS: NOMINAL</span>
+          <span className="nav__status-badge">[SCAN: {scanned}%]</span>
           <span className="nav__status-time">[UTC: {utcTime}]</span>
         </div>
+
+        <span
+          className="nav__progress"
+          style={{ width: `${Number((progress * 100).toFixed(2))}%` }}
+          aria-hidden="true"
+        />
 
         <button
           className="nav__hamburger"

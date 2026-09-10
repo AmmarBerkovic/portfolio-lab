@@ -1,15 +1,18 @@
 import { useIntersection } from '../hooks/useIntersection'
+import { useDecode } from '../hooks/useDecode'
 import { domains } from '../data/content'
 import './CoreStack.css'
 
 export default function CoreStack() {
   const [ref, isVisible] = useIntersection<HTMLElement>()
+  const label = useDecode('// ENGINEERING_DOMAINS', isVisible)
+  const heading = useDecode('Core Stack', isVisible)
 
   return (
     <section id="core-stack" ref={ref}>
       <div className="section-inner">
-        <p className="section-label">// ENGINEERING_DOMAINS</p>
-        <h2 className="section-heading">Core Stack</h2>
+        <p className="section-label">{label}</p>
+        <h2 className="section-heading">{heading}</h2>
 
         <div className="core-stack__grid">
           {domains.map((domain, i) => (

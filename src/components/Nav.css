@@ -113,15 +113,31 @@
   gap: 12px;
 }
 
+/* Cyan, not the old green: this reads out a measured position rather than
+   asserting a health state, so it belongs in the instrument colour. Tabular
+   figures keep the badge from resizing as the number climbs through 9 → 10. */
 .nav__status-badge {
   font-family: var(--font-mono);
   font-size: 9px;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-green);
-  border: 1px solid rgba(74, 222, 128, 0.3);
+  color: var(--color-cyan);
+  border: 1px solid rgba(34, 211, 238, 0.3);
   padding: 2px 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sits on the nav's own bottom border. Absolute, so it stays out of the flex
+   row the logo, links and status share. */
+.nav__progress {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--color-cyan);
+  box-shadow: 0 0 8px rgba(34, 211, 238, 0.55);
+  pointer-events: none;
 }
 
 .nav__status-time {

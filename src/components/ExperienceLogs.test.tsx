@@ -1,5 +1,5 @@
 import { describe, test, expect, vi, beforeEach } from 'vitest'
-import { render, screen, act } from '@testing-library/react'
+import { render, screen, act, waitFor } from '@testing-library/react'
 import ExperienceLogs from './ExperienceLogs'
 import { roles } from '../data/content'
 
@@ -141,5 +141,19 @@ describe('ExperienceLogs', () => {
     container.querySelectorAll('.entry').forEach(el => {
       expect(el.className).toContain('visible')
     })
+  })
+
+  test('metrics settle on their exact values after counting up', async () => {
+    const { container } = render(<ExperienceLogs />)
+    act(() => triggerIntersection?.())
+
+    // Mid-count the strip shows partial figures; what matters is where it lands.
+    await waitFor(
+      () =>
+        expect(textOf(container, '.metric__value')).toEqual(
+          roles.flatMap(r => r.metrics?.map(m => m.value) ?? []),
+        ),
+      { timeout: 3000 },
+    )
   })
 })

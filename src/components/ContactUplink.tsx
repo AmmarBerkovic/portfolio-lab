@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, type FormEvent } from 'react'
 import emailjs from '@emailjs/browser'
 import { useIntersection } from '../hooks/useIntersection'
+import { useDecode } from '../hooks/useDecode'
 import { contact } from '../data/content'
 import './ContactUplink.css'
 
@@ -22,6 +23,8 @@ const BTN_CLASS: Record<SendStatus, string> = {
 
 export default function ContactUplink() {
   const [ref, isVisible] = useIntersection<HTMLElement>()
+  const label = useDecode('// OPEN_CHANNEL', isVisible)
+  const heading = useDecode('Contact Uplink', isVisible)
   const formRef = useRef<HTMLFormElement>(null)
   const [status, setStatus] = useState<SendStatus>('idle')
 
@@ -57,8 +60,8 @@ export default function ContactUplink() {
       <div className="section-inner">
         <div className={`contact-uplink__layout animate-entry${isVisible ? ' visible' : ''}`}>
           <aside className="contact-sidebar" aria-label="Direct channels">
-            <p className="section-label">// OPEN_CHANNEL</p>
-            <h2 className="section-heading">Contact Uplink</h2>
+            <p className="section-label">{label}</p>
+            <h2 className="section-heading">{heading}</h2>
             <p className="contact-uplink__intro">Available for full-time remote roles, any timezone. Transmit your message through the form or connect via a direct channel.</p>
             <p className="contact-sidebar__heading">// DIRECT_CHANNELS</p>
             <a href={contact.github} target="_blank" rel="noreferrer" className="contact-link">

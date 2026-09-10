@@ -95,6 +95,25 @@ html { scrollbar-width: thin; scrollbar-color: #94a3b8 var(--color-bg); }
   margin-bottom: 8px;
 }
 
+/* Terminal caret. Decorative, so it is drawn rather than typed — a literal █
+   in the markup would be read out by a screen reader and copied with the text. */
+.section-label::after {
+  content: '';
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  margin-left: 4px;
+  vertical-align: -0.14em;
+  background: currentColor;
+  box-shadow: 0 0 6px rgba(34, 211, 238, 0.55);
+  animation: caret-blink 1.1s steps(1, end) infinite;
+}
+
+@keyframes caret-blink {
+  0%, 50%      { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
 /* Shared section heading */
 .section-heading {
   font-family: var(--font-mono);
@@ -225,6 +244,14 @@ textarea:focus-visible {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  /* The caret stays — it is a terminal's resting state, not motion. Only the
+     blink stops, and it stops on visible rather than wherever the truncated
+     animation happened to land. */
+  .section-label::after {
+    animation: none;
+    opacity: 1;
   }
 
   *,

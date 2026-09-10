@@ -1,4 +1,5 @@
 import { useIntersection } from '../hooks/useIntersection'
+import { useDecode } from '../hooks/useDecode'
 import { projects } from '../data/content'
 import './ActiveProjects.css'
 
@@ -9,12 +10,14 @@ const STATUS_DOT: Record<string, string> = {
 
 export default function ActiveProjects() {
   const [ref, isVisible] = useIntersection<HTMLElement>()
+  const label = useDecode('// PROJECT_ARCHIVE', isVisible)
+  const heading = useDecode('Active Projects', isVisible)
 
   return (
     <section id="active-projects" ref={ref}>
       <div className="section-inner">
-        <p className="section-label">// PROJECT_ARCHIVE</p>
-        <h2 className="section-heading">Active Projects</h2>
+        <p className="section-label">{label}</p>
+        <h2 className="section-heading">{heading}</h2>
 
         <div className="active-projects__grid">
           {projects.map((project, i) => (

@@ -1,17 +1,28 @@
 import { useIntersection } from '../hooks/useIntersection'
+import { useDecode } from '../hooks/useDecode'
+import { useCountUp } from '../hooks/useCountUp'
 import { roles } from '../data/content'
 import './ExperienceLogs.css'
 
+/** One metric, counting up to itself. Its own component because the hook
+ *  cannot be called from inside the metrics loop. */
+function MetricValue({ value, active }: { value: string; active: boolean }) {
+  const display = useCountUp(value, active)
+  return <span className="metric__value">{display}</span>
+}
+
 export default function ExperienceLogs() {
   const [ref, isVisible] = useIntersection<HTMLElement>()
+  const label = useDecode('// SYSTEM_AUDIT_LOG', isVisible)
+  const heading = useDecode('Experience Logs', isVisible)
 
   return (
     <section id="experience-logs" ref={ref}>
       <div className="section-inner">
         <div className="logs__head">
           <div>
-            <p className="section-label">// SYSTEM_AUDIT_LOG</p>
-            <h2 className="section-heading">Experience Logs</h2>
+            <p className="section-label">{label}</p>
+            <h2 className="section-heading">{heading}</h2>
           </div>
           <span className="logs__count">
             [{String(roles.length).padStart(2, '0')}] TOTAL_ENTRIES
@@ -54,7 +65,7 @@ export default function ExperienceLogs() {
                   {role.metrics.map((m) => (
                     <div key={m.label} className="metric">
                       <span className="metric__label">{m.label}</span>
-                      <span className="metric__value">{m.value}</span>
+                      <MetricValue value={m.value} active={isVisible} />
                     </div>
                   ))}
                 </div>
