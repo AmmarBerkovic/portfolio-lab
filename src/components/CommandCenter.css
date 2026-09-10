@@ -80,7 +80,7 @@
 .command-center__badge-time {
   font-family: var(--font-mono);
   font-size: 10px;
-  color: rgba(148, 163, 184, 0.4);
+  color: rgba(148, 163, 184, 0.8);
 }
 
 .command-center__heading-group {
@@ -286,7 +286,7 @@
   display: block;
   font-family: var(--font-mono);
   font-size: 8px;
-  color: rgba(218, 226, 253, 0.35);
+  color: rgba(218, 226, 253, 0.68);
   margin-top: 2px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -416,12 +416,14 @@
   50%       { opacity: 1; }
 }
 
+/* Location, availability and languages are real CV content, not ambience —
+   they have to clear 4.5:1 even though they sit in the HUD register. */
 .command-center__frame-data {
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono);
   font-size: 8px;
-  color: rgba(218, 226, 253, 0.28);
+  color: rgba(218, 226, 253, 0.66);
 }
 
 /* CV download */
@@ -493,7 +495,7 @@
 .command-center__cv-size {
   font-family: var(--font-mono);
   font-size: 8px;
-  color: rgba(34, 211, 238, 0.55);
+  color: rgba(34, 211, 238, 0.85);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -513,7 +515,9 @@
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  opacity: 0.3;
+  /* Was 0.3 and only reached full strength on hover, which never happens on
+     touch — the hint was effectively invisible on the devices that need it. */
+  opacity: 0.65;
   transition: opacity 0.2s;
   z-index: 1;
   cursor: default;

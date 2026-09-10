@@ -17,20 +17,25 @@ export default function Nav() {
   }, [])
 
   useEffect(() => {
-    const observers: IntersectionObserver[] = []
+    // One observer over a zero-height band across the middle of the viewport.
+    // Per-section observers at a shared threshold let two sections both qualify
+    // as "active" — whichever callback fired last won, so the nav could mark
+    // Experience Logs current while Core Stack filled the screen. Only one
+    // section can cross the middle line, so there is nothing left to race.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const current = entries.find((entry) => entry.isIntersecting)
+        if (current) setActiveId(current.target.id)
+      },
+      { rootMargin: '-50% 0px -50% 0px' },
+    )
 
     SECTION_IDS.forEach((id) => {
       const el = document.getElementById(id)
-      if (!el) return
-      const observer = new IntersectionObserver(
-        ([entry]) => { if (entry.isIntersecting) setActiveId(id) },
-        { threshold: 0.4 },
-      )
-      observer.observe(el)
-      observers.push(observer)
+      if (el) observer.observe(el)
     })
 
-    return () => observers.forEach((o) => o.disconnect())
+    return () => observer.disconnect()
   }, [])
 
   const handleLinkClick = () => setMenuOpen(false)
