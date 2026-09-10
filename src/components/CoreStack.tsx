@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { useIntersection } from '../hooks/useIntersection'
 import { useDecode } from '../hooks/useDecode'
 import { domains } from '../data/content'
@@ -29,8 +30,14 @@ export default function CoreStack() {
                 <h3 className="domain-card__title">{domain.title}</h3>
                 <p className="domain-card__desc">{domain.description}</p>
                 <div className="domain-card__chips">
-                  {domain.chips.map((chip) => (
-                    <span key={chip.label} className={`chip chip--${chip.color}`}>{chip.label}</span>
+                  {domain.chips.map((chip, ci) => (
+                    <span
+                      key={chip.label}
+                      className={`chip chip--${chip.color}`}
+                      style={{ '--i': ci } as CSSProperties}
+                    >
+                      {chip.label}
+                    </span>
                   ))}
                 </div>
               </div>

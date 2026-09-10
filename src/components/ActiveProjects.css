@@ -55,6 +55,32 @@
   background: linear-gradient(135deg, transparent 0%, rgba(47, 217, 244, 0.10) 100%);
 }
 
+/* Scan sweep on hover — see card-sweep in index.css. ::after is spoken for by
+   the corner gradient, so the line takes ::before. */
+.project-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-cyan), transparent);
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.project-card:hover::before {
+  animation: card-sweep 0.7s ease-out;
+}
+
+/* Chips ignite left to right off --i, set per chip in ActiveProjects.tsx. */
+.project-card:hover .chip {
+  box-shadow: 0 0 10px currentColor;
+  transform: translateY(-2px);
+}
+
 .project-card__body {
   padding: 20px;
   padding-bottom: 16px;

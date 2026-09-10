@@ -68,6 +68,16 @@ describe('ActiveProjects', () => {
     expect(hrefs).toEqual(projects.map(p => p.repoUrl))
   })
 
+  test('chips carry their position so the hover cascade can stagger them', () => {
+    const { container } = render(<ActiveProjects />)
+    const indices = cards(container).map(c =>
+      Array.from(c.querySelectorAll<HTMLElement>('.project-card__chips .chip')).map(
+        el => el.style.getPropertyValue('--i'),
+      ),
+    )
+    expect(indices).toEqual(projects.map(p => p.chips.map((_, i) => String(i))))
+  })
+
   test('renders each chip with its colour class, scoped to that card', () => {
     const { container } = render(<ActiveProjects />)
     const classesPerCard = cards(container).map(c =>

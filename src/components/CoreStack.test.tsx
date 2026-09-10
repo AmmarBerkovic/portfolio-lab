@@ -48,6 +48,17 @@ describe('CoreStack', () => {
     expect(chipsPerCard).toEqual(domains.map(d => d.chips.map(chip => chip.label)))
   })
 
+  test('chips carry their position so the hover cascade can stagger them', () => {
+    const { container } = render(<CoreStack />)
+    const indices = cards(container).map(c =>
+      Array.from(c.querySelectorAll<HTMLElement>('.domain-card__chips .chip')).map(
+        el => el.style.getPropertyValue('--i'),
+      ),
+    )
+    // Position restarts per card, so every card's cascade starts on its first chip.
+    expect(indices).toEqual(domains.map(d => d.chips.map((_, i) => String(i))))
+  })
+
   test('renders each card header as its id followed by the underscored title', () => {
     const { container } = render(<CoreStack />)
     const headerIds = cards(container).map(

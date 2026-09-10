@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { useIntersection } from '../hooks/useIntersection'
 import { useDecode } from '../hooks/useDecode'
 import { useCountUp } from '../hooks/useCountUp'
@@ -52,8 +53,12 @@ export default function ExperienceLogs() {
                 <p className="entry__company">// {role.company}</p>
                 <p className="entry__desc">{role.description}</p>
                 <div className="entry__chips">
-                  {role.chips.map((chip) => (
-                    <span key={chip.label} className={`chip chip--${chip.color}`}>
+                  {role.chips.map((chip, ci) => (
+                    <span
+                      key={chip.label}
+                      className={`chip chip--${chip.color}`}
+                      style={{ '--i': ci } as CSSProperties}
+                    >
                       {chip.label}
                     </span>
                   ))}

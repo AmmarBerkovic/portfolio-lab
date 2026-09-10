@@ -79,6 +79,10 @@ html { scrollbar-width: thin; scrollbar-color: #94a3b8 var(--color-bg); }
   padding: 3px 8px;
   border: 1px solid currentColor;
   text-transform: uppercase;
+  /* --i is the chip's position in its card, set by the component. Cards stagger
+     their chips off it on hover; the trigger lives with each card's own CSS. */
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  transition-delay: calc(var(--i, 0) * 45ms);
 }
 .chip--cyan   { color: var(--color-cyan);   background: rgba(34, 211, 238, 0.08); }
 .chip--amber  { color: var(--color-amber);  background: rgba(251, 191, 36, 0.08); }
@@ -154,6 +158,14 @@ html { scrollbar-width: thin; scrollbar-color: #94a3b8 var(--color-bg); }
 @keyframes status-blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.3; }
+}
+
+/* Hover scan sweep, shared by the Core Stack and Active Projects cards.
+   Keyframes are global, so it is declared once here rather than per card. */
+@keyframes card-sweep {
+  0%   { top: 0;    opacity: 0; }
+  12%  {            opacity: 1; }
+  100% { top: 100%; opacity: 0; }
 }
 
 /* Shared ghost button */

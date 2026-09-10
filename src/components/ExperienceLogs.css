@@ -67,6 +67,14 @@
   box-shadow: inset 0 0 12px rgba(34, 211, 238, 0.1), 0 0 14px rgba(34, 211, 238, 0.06);
 }
 
+/* Chips ignite left to right off --i, set per chip in ExperienceLogs.tsx.
+   The records take the cascade but not the scan sweep — a line crossing an
+   entry this tall reads as a page glitch rather than a readout. */
+.entry:hover .chip {
+  box-shadow: 0 0 10px currentColor;
+  transform: translateY(-2px);
+}
+
 /* The newest record carries the accent whether or not the job is still running,
    so the section keeps a focal point between roles. */
 .entry--latest {

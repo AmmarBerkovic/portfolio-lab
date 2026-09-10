@@ -54,6 +54,34 @@
   background: linear-gradient(135deg, transparent 0%, rgba(47, 217, 244, 0.10) 100%);
 }
 
+/* Scan sweep — the same cyan line that crosses the hero photo every five
+   seconds, borrowed for the card hover so the two read as one system.
+   ::after already draws the corner gradient, so this takes ::before. */
+.domain-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-cyan), transparent);
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.domain-card:hover::before {
+  animation: card-sweep 0.7s ease-out;
+}
+
+/* Chips ignite left to right — the card enumerating what it runs on. The
+   stagger comes from --i, set per chip in CoreStack.tsx. */
+.domain-card:hover .chip {
+  box-shadow: 0 0 10px currentColor;
+  transform: translateY(-2px);
+}
+
 .domain-card__body {
   padding: 20px;
 }

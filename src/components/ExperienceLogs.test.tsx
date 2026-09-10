@@ -83,6 +83,16 @@ describe('ExperienceLogs', () => {
     )
   })
 
+  test('chips carry their position so the hover cascade can stagger them', () => {
+    const { container } = render(<ExperienceLogs />)
+    const indices = Array.from(
+      container.querySelectorAll<HTMLElement>('.entry__chips .chip'),
+    ).map(el => el.style.getPropertyValue('--i'))
+
+    // Position restarts per record, so each entry's cascade starts from its left.
+    expect(indices).toEqual(roles.flatMap(r => r.chips.map((_, i) => String(i))))
+  })
+
   test('renders every role status as a readable badge', () => {
     const { container } = render(<ExperienceLogs />)
     expect(textOf(container, '.entry__status')).toEqual(roles.map(r => r.status))

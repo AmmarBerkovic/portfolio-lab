@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { useIntersection } from '../hooks/useIntersection'
 import { useDecode } from '../hooks/useDecode'
 import { projects } from '../data/content'
@@ -35,8 +36,14 @@ export default function ActiveProjects() {
                 <h3 className="project-card__name">{project.name}</h3>
                 <p className="project-card__desc">{project.description}</p>
                 <div className="project-card__chips">
-                  {project.chips.map((chip) => (
-                    <span key={chip.label} className={`chip chip--${chip.color}`}>{chip.label}</span>
+                  {project.chips.map((chip, ci) => (
+                    <span
+                      key={chip.label}
+                      className={`chip chip--${chip.color}`}
+                      style={{ '--i': ci } as CSSProperties}
+                    >
+                      {chip.label}
+                    </span>
                   ))}
                 </div>
               </div>
