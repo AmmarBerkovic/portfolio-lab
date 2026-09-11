@@ -207,6 +207,20 @@ export const roles: Role[] = [
 export const projects: Project[] = [
   {
     id: 'PROJ-001',
+    name: 'Wallet',
+    description:
+      "Withdrawal service that stays correct when the payment provider doesn't — holds taken under a row lock, a transactional outbox to Kafka, and a timeout stored as unknown, not failed.",
+    status: 'active',
+    coordinates: '[X:06, Y:15]',
+    repoUrl: 'https://github.com/AmmarBerkovic/wallet',
+    chips: [
+      { label: 'Golang', color: 'cyan'  },
+      { label: 'MySQL',  color: 'cyan'  },
+      { label: 'Kafka',  color: 'amber' },
+    ],
+  },
+  {
+    id: 'PROJ-002',
     name: 'Taggz',
     description:
       'Standalone tagging and filtering engine — JWT-guarded NestJS API over Prisma and Postgres, with content-addressed file storage isolated per business.',
@@ -220,7 +234,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 'PROJ-002',
+    id: 'PROJ-003',
     name: 'Portfolio Lab',
     description:
       'This site — a React 19 single-page portfolio on Vite, with scroll-reveal sections and a retro terminal HUD built from plain colocated CSS.',
@@ -234,7 +248,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 'PROJ-003',
+    id: 'PROJ-004',
     name: 'The Movie App',
     description:
       'Browses the full TMDB catalogue through a Redux-backed store — filtering, search and trailer playback held in one predictable state tree.',
@@ -246,20 +260,6 @@ export const projects: Project[] = [
       { label: 'React',      color: 'cyan'   },
       { label: 'TypeScript', color: 'cyan'   },
       { label: 'Redux',      color: 'violet' },
-    ],
-  },
-  {
-    id: 'PROJ-004',
-    name: 'Go User API',
-    description:
-      'RESTful user service on a layered Go architecture — Chi routing over GORM repositories, with paginated reads and Protobuf-generated models.',
-    status: 'in-progress',
-    coordinates: '[X:15, Y:03]',
-    repoUrl: 'https://github.com/AmmarBerkovic/Go-User-API',
-    chips: [
-      { label: 'Golang',   color: 'cyan'   },
-      { label: 'MySQL',    color: 'cyan'   },
-      { label: 'Protobuf', color: 'violet' },
     ],
   },
   {
