@@ -150,12 +150,16 @@
   flex-shrink: 0;
 }
 
+/* margin-top:auto pins the record number to the foot of the rail, but on a
+   short record the metrics outrun the description and the auto margin collapses
+   to nothing — the padding keeps the number off the last metric. */
 .entry__record {
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.16em;
   color: rgba(148, 163, 184, 0.55);
   margin-top: auto;
+  padding-top: 14px;
   font-variant-numeric: tabular-nums;
 }
 
@@ -202,27 +206,24 @@
   margin-top: 18px;
 }
 
-/* ── Metrics strip ── */
+/* ── Metrics readout ──
+   The metrics live in the rail, which otherwise sat empty below the status
+   badge for the height of the description beside it. A full-width strip under
+   each record used to carry them. */
 .entry__metrics {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  gap: 14px;
+  align-self: stretch;
+  margin-top: 6px;
+  padding-top: 16px;
   border-top: 1px solid rgba(148, 163, 184, 0.12);
-  background: rgba(34, 211, 238, 0.03);
 }
 
 .metric {
   display: flex;
   flex-direction: column;
   gap: 3px;
-  padding: 12px 24px;
-  border-right: 1px solid rgba(148, 163, 184, 0.1);
-  flex: 1 1 auto;
-  min-width: 160px;
-}
-
-.metric:last-child {
-  border-right: none;
+  min-width: 0;
 }
 
 .metric__label {
@@ -282,28 +283,48 @@
     gap: 16px;
   }
 
-  /* Every record stacks. Nothing scrolls sideways, nothing is hidden. */
+  /* Every record stacks. Nothing scrolls sideways, nothing is hidden.
+     The rail dissolves into the entry grid so its pieces can be placed apart:
+     date and record number share the top line (a wrapping row stranded the
+     number on a line of its own), and the metrics close the record after the
+     title that explains them, rather than opening it with bare figures.
+     display: contents is safe here — the rail is a plain div with no role. */
   .entry {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "date    record"
+      "status  status"
+      "body    body"
+      "metrics metrics";
   }
 
   .entry__rail {
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 14px 18px;
-    border-right: none;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    display: contents;
+  }
+
+  .entry__date {
+    grid-area: date;
+    padding: 16px 0 0 18px;
+    line-height: 16px;
   }
 
   .entry__record {
-    margin-top: 0;
-    margin-left: auto;
+    grid-area: record;
+    margin: 0;
+    padding: 16px 18px 0 12px;
+    line-height: 16px;
+  }
+
+  .entry__status {
+    grid-area: status;
+    justify-self: start;
+    margin: 10px 18px 16px;
   }
 
   .entry__body {
+    grid-area: body;
     padding: 18px;
+    border-top: 1px solid rgba(148, 163, 184, 0.12);
   }
 
   .entry__title {
@@ -314,10 +335,19 @@
     font-size: 13.5px;
   }
 
+  /* One metric per line, label left and value right — three rows, so the
+     third never sits alone the way it did in a two-up grid. */
+  .entry__metrics {
+    grid-area: metrics;
+    gap: 8px;
+    margin: 0 18px 18px;
+    padding-top: 14px;
+  }
+
   .metric {
-    min-width: 50%;
-    border-right: none;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-    padding: 10px 18px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
   }
 }

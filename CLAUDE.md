@@ -114,7 +114,13 @@ The motion work is merged and live: metric count-up, decoding section headings, 
 caret on section labels, a nav scan readout with progress bar, the card boot reveal, a hover
 scan sweep and chip cascade, a counter-rotating hero ring, bracketed ghost buttons, a contact
 form that shows a send in progress, and hero parallax. It added ~2.2 KB gzipped and no
-dependency; the bundle is 71.19 KB gzipped JS and 5.93 KB gzipped CSS.
+dependency; the bundle is 71.25 KB gzipped JS and 6.01 KB gzipped CSS.
+
+**Experience Logs metrics live in the rail**, between the status badge and the record number,
+filling the column that sat empty beside long descriptions; the full-width strip that used to
+carry them is gone. On phones the rail is `display: contents` so its pieces place separately in
+the entry grid: date and record number share the top line, and the metrics close the record as
+label-left/value-right rows after the title that explains them.
 
 ## Known open items
 
@@ -125,8 +131,11 @@ dependency; the bundle is 71.19 KB gzipped JS and 5.93 KB gzipped CSS.
 - **EmailJS contact form works.** Its public key is in the bundle by design, so the domain
   allowlist and captcha should be enabled in the EmailJS dashboard to keep the inbox clean.
 - **The card boot reveal squashes content on the tall log entries**, which Ammar flagged as the
-  one animation he might want reverted (`2001d1a`). Putting `.entry` back on `.animate-entry`
-  in `ExperienceLogs.tsx` keeps the grid cards booting while the records go back to the fade.
+  one animation he might want reverted (`2001d1a`). Moving the metrics into the rail made every
+  record shorter, which softens it. Putting `.entry` back on `.animate-entry` in
+  `ExperienceLogs.tsx` keeps the grid cards booting while the records go back to the fade.
+- **The Intern Developer record's rail outruns its description.** Three metrics against two
+  lines of copy leave space under its chips. The fix is a sentence of copy, not layout.
 - **The hero rings drift out of alignment with the photo frame.** They are concentric
   decoration around it, and parallax at 0.3× puts them ~120px off-centre by 400px of scroll.
   Deliberate and approved, but the rate is one number in `CommandCenter.tsx` if it grates.

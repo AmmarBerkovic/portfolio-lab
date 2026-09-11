@@ -83,6 +83,23 @@ describe('ExperienceLogs', () => {
     )
   })
 
+  test("each record's metrics sit in its rail, between the status badge and the record number", () => {
+    const { container } = render(<ExperienceLogs />)
+    const rails = Array.from(container.querySelectorAll<HTMLElement>('.entry__rail'))
+
+    expect(rails).toHaveLength(roles.length)
+    rails.forEach((rail, i) => {
+      expect(textOf(rail, '.metric__value')).toEqual(
+        roles[i].metrics?.map(m => m.value) ?? [],
+      )
+      const metrics = rail.querySelector('.entry__metrics')
+      if (metrics) {
+        expect(metrics.previousElementSibling).toHaveClass('entry__status')
+        expect(metrics.nextElementSibling).toHaveClass('entry__record')
+      }
+    })
+  })
+
   test('chips carry their position so the hover cascade can stagger them', () => {
     const { container } = render(<ExperienceLogs />)
     const indices = Array.from(
@@ -126,7 +143,7 @@ describe('ExperienceLogs', () => {
     expect(container.querySelectorAll('.entry--education')).toHaveLength(1)
   })
 
-  test('the education entry renders no metrics strip', () => {
+  test('the education entry renders no metrics', () => {
     const { container } = render(<ExperienceLogs />)
     expect(
       container.querySelector('.entry--education .entry__metrics'),
@@ -158,7 +175,7 @@ describe('ExperienceLogs', () => {
     const { container } = render(<ExperienceLogs />)
     act(() => triggerIntersection?.())
 
-    // Mid-count the strip shows partial figures; what matters is where it lands.
+    // Mid-count the rail shows partial figures; what matters is where it lands.
     await waitFor(
       () =>
         expect(textOf(container, '.metric__value')).toEqual(

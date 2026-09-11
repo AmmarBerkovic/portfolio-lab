@@ -43,6 +43,16 @@ export default function ExperienceLogs() {
                   <i className="entry__dot" aria-hidden="true" />
                   {role.status}
                 </span>
+                {role.metrics && (
+                  <div className="entry__metrics">
+                    {role.metrics.map((m) => (
+                      <div key={m.label} className="metric">
+                        <span className="metric__label">{m.label}</span>
+                        <MetricValue value={m.value} active={isVisible} />
+                      </div>
+                    ))}
+                  </div>
+                )}
                 <span className="entry__record">
                   LOG-{String(i + 1).padStart(3, '0')}
                 </span>
@@ -64,17 +74,6 @@ export default function ExperienceLogs() {
                   ))}
                 </div>
               </div>
-
-              {role.metrics && (
-                <div className="entry__metrics">
-                  {role.metrics.map((m) => (
-                    <div key={m.label} className="metric">
-                      <span className="metric__label">{m.label}</span>
-                      <MetricValue value={m.value} active={isVisible} />
-                    </div>
-                  ))}
-                </div>
-              )}
 
               {/* HUD brackets mark the live record only, so they mean something. */}
               {role.status === 'ACTIVE' && (
