@@ -96,6 +96,7 @@ export const domains: Domain[] = [
       { label: 'Node.js', color: 'cyan'  },
       { label: 'Redis',   color: 'amber' },
       { label: 'MongoDB', color: 'amber' },
+      { label: 'Kafka',   color: 'amber' },
     ],
   },
   {
@@ -209,14 +210,15 @@ export const projects: Project[] = [
     id: 'PROJ-001',
     name: 'Wallet',
     description:
-      "Withdrawal service that stays correct when the payment provider doesn't — holds taken under a row lock, a transactional outbox to Kafka, and a timeout stored as unknown, not failed.",
+      "Withdrawal service that stays correct when the payment provider doesn't — a timeout held as unknown, not failed, and an outbox to Kafka. Each guarantee is tested against real MySQL and proven by breaking it.",
     status: 'active',
     coordinates: '[X:06, Y:15]',
     repoUrl: 'https://github.com/AmmarBerkovic/wallet',
     chips: [
-      { label: 'Golang', color: 'cyan'  },
-      { label: 'MySQL',  color: 'cyan'  },
-      { label: 'Kafka',  color: 'amber' },
+      { label: 'Golang',         color: 'cyan'   },
+      { label: 'MySQL',          color: 'cyan'   },
+      { label: 'Kafka',          color: 'amber'  },
+      { label: 'Testcontainers', color: 'violet' },
     ],
   },
   {
