@@ -89,7 +89,7 @@ export const domains: Domain[] = [
     id: 'MOD-001',
     title: 'Backend Architecture',
     description:
-      'Multi-tenant services built for throughput — provider-agnostic adapters, a greenfield rules engine, and billing paths reconciled against what the carrier actually charged.',
+      'Multi-tenant services built for throughput — provider-agnostic adapters, plan management across affiliation hierarchies, and billing paths reconciled against what the carrier actually charged.',
     chips: [
       { label: 'Golang',  color: 'cyan'  },
       { label: 'MySQL',   color: 'cyan'  },
@@ -132,7 +132,7 @@ export const roles: Role[] = [
     title: 'Backend Developer',
     company: 'Pickleball Inc',
     description:
-      "Rebuilt the messaging platform — multi-tenant infrastructure behind every email, SMS and push the product sends: 150,000 emails and 250,000 SMS a month, worldwide, with delivery behind a provider-agnostic adapter and customer-supplied provider accounts. Shut down an SMS pumping attack — fraudsters farming termination fees on high-cost destinations — with an allowed-destinations list, registration rate limiting and IP-to-phone geolocation matching. Designed the Affiliations Rules Engine, the product's first model of how organizations relate to one another, and wired the billing paths so a club joining or leaving a hierarchy never interrupts its members' payments.",
+      "Rebuilt the messaging platform — multi-tenant infrastructure behind every email, SMS and push the product sends: 150,000 emails and 250,000 SMS a month, worldwide, with delivery behind a provider-agnostic adapter and customer-supplied provider accounts. Shut down an SMS pumping attack — fraudsters farming termination fees on high-cost destinations — with an allowed-destinations list, registration rate limiting and IP-to-phone geolocation matching. Built plan management across affiliation hierarchies, so a parent organization can take over its clubs' membership plans, and a club can join or leave, without interrupting any member's payments.",
     status: 'ARCHIVED',
     chips: [
       { label: 'Golang',  color: 'cyan'   },
